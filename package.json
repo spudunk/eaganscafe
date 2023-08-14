@@ -1,0 +1,16 @@
+{
+  "name": "etheleagans",
+  "version": "1.0.0",
+  "description": "Ethel Eagans restaurant website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "sass --watch src:out",
+    "build": "sass src:out"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.65.1"
+  }
+}
