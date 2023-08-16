@@ -10,7 +10,7 @@
     <div class="max-w-md outline outline-slate-200 dark:outline-slate-800 rounded">
       <div class="p-2">
         <div class="flex justify-between">
-          <span class="font-bold dark:font-semibold"> {item.name} </span>
+          <h3 class="font-bold dark:font-semibold"> {item.name} </h3>
           {#if item.price}
             <span class="mr-8"> ${item.price.toFixed(2)} </span>
           {/if}
