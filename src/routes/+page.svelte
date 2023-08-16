@@ -50,6 +50,7 @@
     content="Family owned cafe serving burgers, fries, shakes, and more. Come try us out for lunch!"
   />
   <!-- <meta name="twitter:image" content="" /> -->
+  <link rel=“canonical” href=“https://eaganscafe.com/” />
 </svelte:head>
 
 <Header phone="(360) 978-5410" />
