@@ -12,7 +12,7 @@
 
 <section id="info" class={`flex gap-1 flex-col items-center pt-4 ${$$props.class}`}>
   <a href={info.route}>
-    <h1 class="text-2xl font-bold">{info.heading}</h1>
+    <h1 class="text-2xl font-bold hover:text-neutral-700 dark:hover:text-neutral-400">{info.heading}</h1>
   </a>
   <a class="link" target="_blank" href={info.navLink}>
     {info.address}
