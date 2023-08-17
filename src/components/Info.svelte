@@ -8,16 +8,17 @@
     tel: "",
     details: [],
   };
+  export let home = false;
 </script>
 
 <section id="info" class={`flex gap-1 flex-col items-center pt-4 ${$$props.class}`}>
   <a href={info.route}>
-    <h1 class="text-2xl font-bold lg:hover:text-neutral-700 lg:dark:hover:text-neutral-400">{info.heading}</h1>
+    <h1 class={`text-2xl font-bold ${home ? "text-blue-800 dark:text-blue-300 underline":""}`}>{info.heading}</h1>
   </a>
-  <a class="link" target="_blank" href={info.navLink}>
+  <a class="text-blue-900 dark:text-blue-200 underline" target="_blank" href={info.navLink}>
     {info.address}
   </a>
-  <a href={info.telLink} class="link">{info.tel}</a>
+  <a href={info.telLink} class="text-blue-900 dark:text-blue-200 underline">{info.tel}</a>
   {#each info.details as line}
     <span>{line}</span>
   {/each}

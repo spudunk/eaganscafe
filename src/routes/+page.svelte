@@ -19,6 +19,6 @@
 <Header phone="" />
 
 <main class="container mt-16">
-  <Info info={ethelInfo} />
-  <Info info={teninoInfo} class="mt-12 mb-12"/>
+  <Info info={ethelInfo} home/>
+  <Info info={teninoInfo} home class="mt-12 mb-12"/>
 </main>
