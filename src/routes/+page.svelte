@@ -20,5 +20,5 @@
 
 <main class="container mt-16">
   <Info info={ethelInfo} />
-  <Info info={teninoInfo} />
+  <Info info={teninoInfo} class="mt-12 mb-12"/>
 </main>
