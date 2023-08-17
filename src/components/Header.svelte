@@ -1,20 +1,24 @@
 <script>
-// @ts-nocheck
+  // @ts-nocheck
   export let phone;
+  export let tel;
 </script>
 
 <header
-  class="fixed top-0 left-0 w-full bg-slate-200 dark:bg-slate-900 opacity-90 py-2 print:hidden"
+  class="fixed top-0 left-0 w-full bg-neutral-200 dark:bg-neutral-800 opacity-90 py-2 print:hidden"
 >
   <div class="container flex justify-between items-center">
-    <div class="logo">Eagans Cafe</div>
-    <div>
-      <a
-        href="tel:+13609785410"
-        class="font-semibold outline outline-slate-400 rounded px-2 py-1 sm:hidden"
-        >Call Now</a
-      >
-      <a href="tel:+13609785410" class="hidden sm:block">{phone}</a>
-    </div>
+    <a class="logo" href="/">Eagans Cafe</a>
+
+    {#if tel}
+      <div>
+        <a
+          href="tel:{tel}"
+          class="font-semibold outline outline-neutral-400 rounded px-2 py-1 sm:hidden"
+          >Call Now</a
+        >
+        <a href="tel:{tel}" class="hidden sm:block">{phone}</a>
+      </div>
+    {/if}
   </div>
 </header>
