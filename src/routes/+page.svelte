@@ -4,6 +4,14 @@
   import SEO from "../components/SEO.svelte";
   import Info from "../components/Info.svelte";
   import { ethelInfo, teninoInfo } from "$lib/info";
+  import { preloadData } from "$app/navigation";
+  import { onMount } from "svelte";
+
+  onMount(()=>{
+    preloadData("/ethel");
+    preloadData("/tenino");
+  })
+
 </script>
 
 <SEO />
