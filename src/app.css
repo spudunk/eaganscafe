@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body { 
+    @apply dark:bg-neutral-900 dark:text-neutral-200 dark:font-light min-h-screen pb-20 pt-16
+}

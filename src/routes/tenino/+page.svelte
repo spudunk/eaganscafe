@@ -14,12 +14,12 @@
 
 <Header phone="(360) 264-8791" tel="+13602648791"/>
 
-<main class="container mt-16">
+<main class="container">
   <Info info={teninoInfo} />
 
   <SizeButton />
 
-  <section id="menu" class="mt-8 grid gap-8 justify-center">
+  <section id="menu" class="grid gap-8 justify-center">
     {#each sections as section}
       <MenuSection menu={teninoMenu[section]} />
     {/each}

@@ -14,11 +14,11 @@
 
 <Header phone="(360) 978-5410" tel="+13609785410" />
 
-<main class="container mt-16">
+<main class="container">
   <Info info={ethelInfo} />
   <SizeButton />
 
-  <section id="menu" class="mt-8 grid gap-8 justify-center">
+  <section id="menu" class="pt-8 grid gap-8 justify-center">
     {#each sections as section}
       <MenuSection menu={ethelMenu[section]} />
     {/each}
