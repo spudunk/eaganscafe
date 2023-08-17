@@ -7,7 +7,7 @@
   class=" mt-4 grid sm:grid-cols-2 lg:grid-cols-3 print:grid-cols-2 gap-4 lg:gap-6 justify-stretch"
 >
   {#each items as item}
-    <div class="max-w-md outline outline-slate-200 dark:outline-slate-800 rounded">
+    <div class="max-w-md outline outline-neutral-200 dark:outline-neutral-800 rounded">
       <div class="p-2">
         <div class="flex justify-between">
           <h3 class="font-bold dark:font-semibold"> {item.name} </h3>

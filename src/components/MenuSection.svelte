@@ -8,7 +8,7 @@
   <h2 class="text-2xl font-bold dark:font-medium">{menu.heading}</h2>
   {#if menu.description}
     {#each menu.description as p}
-      <p>{p}</p>
+      <p class="mt-2">{p}</p>
     {/each}
   {/if}
   <MenuBox items={menu.items} />
