@@ -1,4 +1,4 @@
-export const ethelMenu = {
+export const ethelLunchMenu = {
   specialtyBurgers: {
     heading: "Specialty Burgers",
     description: [
@@ -234,16 +234,146 @@ export const ethelMenu = {
   },
 };
 
-// item template
-// {
-//   name: "item_name",
-//   description: "item_description",
-//   price: 0,
-//   sizes: [
-//     { size: "Small", price: 0 },
-//     { size: "Large", price: 0 },
-//   ],
-// },
+export const ethelBreakfastMenu = {
+  classic: {
+    heading: "Classic Breakfast",
+    description: [
+      "Breakfast served with hashbrowns, 2 eggs, and toast or a biscuit.",
+    ],
+    items: [
+      {
+        name: "Bacon and Eggs",
+        price: 13.49,
+      },
+      {
+        name: "Sausage and Eggs",
+        description: "choice of links or patties",
+        price: 13.49,
+      },
+      {
+        name: "Hashbrows and Eggs",
+        description:
+          "served with your choice of sourdough, white, wheat, or biscuit",
+        price: 10.49,
+      },
+      {
+        name: "Hamburger Steak",
+        price: 14.49,
+      },
+      {
+        name: "Country Fried Steak",
+        price: 15.49,
+      },
+    ],
+  },
+  omeletts: {
+    heading: "Omeletts",
+    description: [],
+    items: [
+      {
+        name: "Ham and Cheese Omelett",
+        price: 12.49,
+      },
+      {
+        name: "Sausage or Bacon and Cheese Omelett",
+        price: 12.49,
+      },
+      {
+        name: "Denver Omelett",
+        description: "Ham, bell pepper, onions, and cheese",
+        price: 14.49,
+      },
+      {
+        name: "Veggie Omelett",
+        description: "Mushrooms, bell peppers, tomato, onion, and cheese",
+        price: 14.49,
+      },
+    ],
+  },
+  sandwiches: {
+    heading: "Breakfast Sandwiches",
+    description: [],
+    items: [
+      {
+        name: "Bacon, Hame, or Sausage and Egg Sandwich",
+        description: "Served on your choice of white, wheat, sourdough, or biscuit",
+        price: 7.89
+      }
+    ]
+  },
+  griddle: {
+    heading: "Off the Griddle",
+    description: [],
+    items: [
+      {
+        name: "Single Cake",
+        price: 3.49,
+      },
+      {
+        name: "Short Stack",
+        sizes: [
+          { size: "2 cakes", price: 6.48 },
+          { size: "3 cakes", price: 9.49 },
+        ],
+      },
+      {
+        name: "",
+        description: "1 cake, with 2 eggs, choice of sausage links, patties, bacon, or Ham",
+        price: 11.49,
+      },
+    ],
+  },
+  bAndG: {
+    heading: "Classic B&G",
+    description: [],
+    items: [
+      {
+        name: "Half biscuit & Gravy",
+        description: "1 and a half biscuits",
+        price: 5.39,
+      },
+      {
+        name: "Full biscuit & Gravy",
+        description: "2 and a half biscuits",
+        price: 8.89,
+      },
+      {
+        name: "Hashbrows Biscuits & Gravy",
+        price: 10.89,
+      },
+      {
+        name: "",
+        description: "Half order B&G with 2 eggs and choice of Sausage links, patties, bacon, or Ham",
+        price: 14.39,
+      },
+    ],
+  },
+  sides: {
+    heading: "Sides",
+    items: [
+      {
+        name: "Hashbrowns and Gravy",
+        price: 7.49,
+      },
+      {
+        name: "Eggs (2)",
+        price: 2.49,
+      },
+      {
+        name: "Toast or Biscuit",
+        price: 1.99,
+      },
+      {
+        name: "Breakfast Meats",
+        description: "4 slices of bacon, 4 links, 2 Patties, and 1 slice ham",
+        sizes: [
+          { size: "Full order", price: 8.50 },
+          { size: "Half order", price: 4.50 },
+        ],
+      },
+    ],
+  },
+};
 
 export const teninoMenu = {
   burgers: {
@@ -328,21 +458,27 @@ export const teninoMenu = {
   },
   sandwiches: {
     heading: "Sandwiches",
-    description: ["All Sandwiches come with choice of side", "add $1.00 for a Pub Roll (except the Downtown)"],
+    description: [
+      "All Sandwiches come with choice of side",
+      "add $1.00 for a Pub Roll (except the Downtown)",
+    ],
     items: [
       {
         name: "Tuna Fish",
-        description: "Pick your style, Tuna, pickles, lettuce, tomato and mayo on your choice of bread OR melt it up with cheese",
+        description:
+          "Pick your style, Tuna, pickles, lettuce, tomato and mayo on your choice of bread OR melt it up with cheese",
         price: 6.75,
       },
       {
         name: "BLT",
-        description: "4 slices thick cut bacon, lettuce, tomato and mayo on choice of bread",
+        description:
+          "4 slices thick cut bacon, lettuce, tomato and mayo on choice of bread",
         price: 7.75,
       },
       {
         name: "Downtown",
-        description: "Grilled deli style turkey breast, 2 strips thick cut bacon, Swiss cheese, tomatoes and avocodo spread grilled on sourdough or a pub roll",
+        description:
+          "Grilled deli style turkey breast, 2 strips thick cut bacon, Swiss cheese, tomatoes and avocodo spread grilled on sourdough or a pub roll",
         price: 9.75,
       },
       {
@@ -360,7 +496,7 @@ export const teninoMenu = {
         name: "French Fries",
         sizes: [
           { size: "Small", price: 2.25 },
-          { size: "Large", price: 3.50 },
+          { size: "Large", price: 3.5 },
         ],
       },
       {
@@ -384,10 +520,29 @@ export const teninoMenu = {
       },
       {
         name: "Sauces",
-        description: "Goop, Tarter Sauce, Pink Sauce, BBQ, Ranch, Honey Mustard and Spicy Pink Sauce",
+        description:
+          "Goop, Tarter Sauce, Pink Sauce, BBQ, Ranch, Honey Mustard and Spicy Pink Sauce",
         price: 0.25,
       },
-
-    ]
-  }
+    ],
+  },
 };
+
+// menu template
+// let menu = {
+//   sectionTitle: {
+//     heading: "Section_Heading",
+//     description: ["description_line_1", "description_line_2"],
+//     items: [
+//       {
+//         name: "item_name",
+//         description: "item_description",
+//         price: 0,
+//         sizes: [
+//           { size: "Small", price: 0 },
+//           { size: "Large", price: 0 },
+//         ],
+//       },
+//     ],
+//   },
+// };
