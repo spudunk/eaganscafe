@@ -12,7 +12,7 @@ export const ethelInfo = {
 
 export const teninoInfo = {
   route: "/tenino",
-  heading: "Loretta Eagans Cafe",
+  heading: "Eagans Tenino Cafe",
   address: "472 Sussex Ave, Tenino, WA",
   navLink: "https://goo.gl/maps/3Cc7i32nLEW3wANN8",
   telLink: "tel:+13602648791",
