@@ -25,7 +25,7 @@
     {/each}
   </section>
 
-  <section id="breakfast_menu" class="pt-8 grid gap-8 justify-center">
+  <section id="breakfast_menu" class="pt-8 grid gap-8 justify-center break-inside-avoid">
     {#each breakfastSections as section}
       <MenuSection menu={ethelBreakfastMenu[section]} />
     {/each}
