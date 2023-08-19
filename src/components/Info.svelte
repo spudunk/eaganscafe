@@ -11,7 +11,7 @@
   };
 </script>
 
-<section id="info" class={`flex gap-1 flex-col items-center pt-4 ${$$props.class}`}>
+<section id="info" class={`flex gap-1 flex-col items-center pt-4 text-center ${$$props.class}`}>
   <a href={info.route} class="px-2 py-1">
     <h1 class={`text-2xl font-bold ${$page.url.pathname == "/" ? "text-blue-800 dark:text-blue-300 underline":""}`}>{info.heading}</h1>
   </a>
