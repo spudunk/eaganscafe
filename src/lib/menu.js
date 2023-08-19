@@ -295,7 +295,7 @@ export const ethelBreakfastMenu = {
     description: [],
     items: [
       {
-        name: "Bacon, Hame, or Sausage and Egg Sandwich",
+        name: "Bacon, Ham, or Sausage and Egg Sandwich",
         description: "Served on your choice of white, wheat, sourdough, or biscuit",
         price: 7.89
       }
