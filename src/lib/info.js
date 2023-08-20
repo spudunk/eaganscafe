@@ -17,9 +17,8 @@ export const teninoInfo = {
   navLink: "https://goo.gl/maps/3Cc7i32nLEW3wANN8",
   telLink: "tel:+13602648791",
   tel: "(360) 264-8791",
-  details: [
-    "Mon-Thu 11am - 7pm",
-    "Fri-Sat 11am - 8pm",
-    "Sun 12pm - 7pm",
-  ],
+  details: ["Mon-Thu 11am - 7pm", "Fri-Sat 11am - 8pm", "Sun 12pm - 7pm"],
 };
+
+export const description =
+  "Family owned cafes serving burgers, fries, shakes, and more. Locations in Ethel and Tenino, WA. Call in an order today!";

@@ -1,12 +1,9 @@
-<script>
-  export let description =
-    "Family owned cafe serving burgers, fries, shakes, and more. Come try us out for lunch!";
+<script lang="ts">
+  import { description as defaultDescription } from "$lib/info";
+  export let description = defaultDescription;
   export let title = "Eagans Cafe";
   export let url = "https://eaganscafe.com";
-  /**
-   * @type {String}
-   */
-  export let img;
+  export let img: string;
 </script>
 
 <svelte:head>
