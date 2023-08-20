@@ -16,7 +16,11 @@
   on:click={() => {
     tab.set(id);
     $page.url.searchParams.set("tab", id);
-    goto(`?${$page.url.searchParams.toString()}`);
+    
+    // update query in window
+    const url = new URL(window.location.toString());
+    url.searchParams.set('tab', id);
+    history.replaceState(history.state, '', url);
   }}
   class={`py-1 px-2 rounded-t font-bold ${
     selectedTab == id ? "border-t border-r border-l" : "text-neutral-500"
