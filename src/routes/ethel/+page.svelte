@@ -9,20 +9,21 @@
   import SEO from "$lib/components/SEO.svelte";
   import Info from "$lib/components/Info.svelte";
   import TabButton from "$lib/components/TabButton.svelte";
-  import { onMount } from "svelte";
+  import { browser } from "$app/environment";
 
   let selectedTab: string;
   tab.subscribe((value) => {
     selectedTab = value;
   });
 
-  onMount(() => {
+  if (browser) {
     page.subscribe((value) => {
       if (value.url.searchParams.has("tab")) {
         tab.set(value.url.searchParams.get("tab") || "");
       }
     });
-  });
+  }
+
 </script>
 
 <SEO url="https://eaganscafe.com/ethel" title="Ethel Eagans Cafe" />
