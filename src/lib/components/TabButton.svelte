@@ -18,8 +18,8 @@
     $page.url.searchParams.set("tab", id);
     history.replaceState(history.state, '', $page.url);
   }}
-  class={`py-1 px-2 rounded-t font-bold ${
-    selectedTab == id ? "border-t border-r border-l" : "text-neutral-500"
+  class={`py-1 px-2 rounded-t font-bold border-t border-r border-l ${
+    selectedTab == id ? "" : "text-neutral-400 dark:text-neutral-500 dark:border-neutral-500 "
   }`}
 >
   <slot />
