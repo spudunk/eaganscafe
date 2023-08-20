@@ -17,7 +17,7 @@
           class="font-semibold border border-neutral-400 rounded px-2 py-1 my-1 sm:hidden"
           >Call Now</a
         >
-        <a href="tel:{tel}" class="hidden sm:block py-1 my-1">{phone}</a>
+        <a href="tel:{tel}" class="hidden sm:inline py-1 my-1">{phone}</a>
       </div>
     {/if}
   </div>
