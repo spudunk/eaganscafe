@@ -1,5 +1,4 @@
 <script lang="ts">
-  export const prerender = true;
   import { teninoMenu } from "$lib/menu";
   import { teninoInfo } from "$lib/info";
   import MenuSection from "$lib/components/MenuSection.svelte";

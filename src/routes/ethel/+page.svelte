@@ -1,5 +1,4 @@
 <script lang="ts">
-  export const prerender = true;
   import { page } from "$app/stores";
   import { ethelLunchMenu, ethelBreakfastMenu } from "$lib/menu";
   import { ethelInfo } from "$lib/info";
@@ -10,16 +9,19 @@
   import SEO from "$lib/components/SEO.svelte";
   import Info from "$lib/components/Info.svelte";
   import TabButton from "$lib/components/TabButton.svelte";
+  import { onMount } from "svelte";
 
   let selectedTab: string;
   tab.subscribe((value) => {
     selectedTab = value;
   });
 
-  page.subscribe((value) => {
-    if (value.url.searchParams.has("tab")) {
-      tab.set(value.url.searchParams.get("tab") || "");
-    }
+  onMount(() => {
+    page.subscribe((value) => {
+      if (value.url.searchParams.has("tab")) {
+        tab.set(value.url.searchParams.get("tab") || "");
+      }
+    });
   });
 </script>
 
@@ -37,7 +39,6 @@
     <TabButton id="breakfast">Breakfast</TabButton>
   </div>
 
-  <!-- {#if selectedTab == "lunch"} -->
   <!-- Lunch -->
   <section
     id="lunch"
@@ -49,7 +50,7 @@
       <MenuSection menu={section} />
     {/each}
   </section>
-  <!-- {:else if selectedTab == "breakfast"} -->
+
   <!-- Breakfast -->
   <section
     id="breakfast"
@@ -61,5 +62,4 @@
       <MenuSection menu={section} />
     {/each}
   </section>
-  <!-- {/if} -->
 </main>
