@@ -1,5 +1,5 @@
-<script>
-  // @ts-nocheck
+<script lang="ts">
+  export const prerender = true;
   import Header from "$lib/components/Header.svelte";
   import SEO from "$lib/components/SEO.svelte";
   import Info from "$lib/components/Info.svelte";

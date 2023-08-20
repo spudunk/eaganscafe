@@ -7,7 +7,7 @@
     navLink: "",
     telLink: "",
     tel: "",
-    details: [],
+    details: [""],
   };
 </script>
 

@@ -1,7 +1,7 @@
 <script>
   // @ts-nocheck
-  export let phone;
-  export let tel;
+  export let phone = "";
+  export let tel = "";
 </script>
 
 <header

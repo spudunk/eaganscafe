@@ -1,7 +1,6 @@
-<script>
-  // @ts-nocheck
+<script lang="ts">
+  export const prerender = true;
   import { page } from "$app/stores";
-
   import { ethelLunchMenu, ethelBreakfastMenu } from "$lib/menu";
   import { ethelInfo } from "$lib/info";
   import { tab } from "$lib/stores";
@@ -12,17 +11,14 @@
   import Info from "$lib/components/Info.svelte";
   import TabButton from "$lib/components/TabButton.svelte";
 
-  const lunchSections = Object.keys(ethelLunchMenu);
-  const breakfastSections = Object.keys(ethelBreakfastMenu);
-
-  let selectedTab;
+  let selectedTab: string;
   tab.subscribe((value) => {
     selectedTab = value;
   });
 
   page.subscribe((value) => {
     if (value.url.searchParams.has("tab")) {
-      tab.set(value.url.searchParams.get("tab"));
+      tab.set(value.url.searchParams.get("tab") || "");
     }
   });
 </script>
@@ -42,21 +38,28 @@
   </div>
 
   <!-- {#if selectedTab == "lunch"} -->
-    <!-- Lunch -->
-    <section id="lunch" class={`pt-8 grid gap-8 justify-center ${!(selectedTab == 'lunch') ? 'hidden' : ''} print:block print:break-after-page`}>
-      {#each lunchSections as section}
-        <MenuSection menu={ethelLunchMenu[section]} />
-      {/each}
-    </section>
+  <!-- Lunch -->
+  <section
+    id="lunch"
+    class={`pt-8 grid gap-8 justify-center ${
+      !(selectedTab == "lunch") ? "hidden" : ""
+    } print:block print:break-after-page`}
+  >
+    {#each Object.entries(ethelLunchMenu) as [_, section]}
+      <MenuSection menu={section} />
+    {/each}
+  </section>
   <!-- {:else if selectedTab == "breakfast"} -->
-    <!-- Breakfast -->
-    <section
-      id="breakfast"
-      class={`pt-8 grid gap-8 justify-center ${!(selectedTab == 'breakfast') ? 'hidden' : ''} print:block`}
-    >
-      {#each breakfastSections as section}
-        <MenuSection menu={ethelBreakfastMenu[section]} />
-      {/each}
-    </section>
+  <!-- Breakfast -->
+  <section
+    id="breakfast"
+    class={`pt-8 grid gap-8 justify-center ${
+      !(selectedTab == "breakfast") ? "hidden" : ""
+    } print:block`}
+  >
+    {#each Object.entries(ethelBreakfastMenu) as [_, section]}
+      <MenuSection menu={section} />
+    {/each}
+  </section>
   <!-- {/if} -->
 </main>

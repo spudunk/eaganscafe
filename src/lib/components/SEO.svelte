@@ -3,7 +3,7 @@
   export let description = defaultDescription;
   export let title = "Eagans Cafe";
   export let url = "https://eaganscafe.com";
-  export let img: string;
+  export let img = "";
 </script>
 
 <svelte:head>
