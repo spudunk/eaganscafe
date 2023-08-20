@@ -1,5 +1,4 @@
-<script>
-  // @ts-nocheck
+<script lang="ts">
   export let phone = "";
   export let tel = "";
 </script>
