@@ -1,5 +1,7 @@
 <script>
   // @ts-nocheck
+  import { page } from "$app/stores";
+
   import { ethelLunchMenu, ethelBreakfastMenu } from "$lib/menu";
   import { ethelInfo } from "$lib/info";
   import { tab } from "$lib/stores";
@@ -16,8 +18,13 @@
   let selectedTab;
   tab.subscribe((value) => {
     selectedTab = value;
-  })
+  });
 
+  page.subscribe((value) => {
+    if (value.url.searchParams.has("tab")) {
+      tab.set(value.url.searchParams.get("tab"));
+    }
+  });
 </script>
 
 <SEO url="https://eaganscafe.com/ethel" title="Ethel Eagans Cafe" />
