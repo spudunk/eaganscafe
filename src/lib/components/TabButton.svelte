@@ -19,7 +19,7 @@
     history.replaceState(history.state, '', $page.url);
   }}
   class={`py-1 px-2 rounded-t font-bold border-t border-r border-l ${
-    selectedTab == id ? "" : "text-neutral-400 dark:text-neutral-500 dark:border-neutral-500 "
+    selectedTab == id ? "dark:border-b-neutral-900 border-b-white border-b-4 -mb-[2px]" : "text-neutral-400 dark:text-neutral-500 dark:border-neutral-500 "
   }`}
 >
   <slot />
