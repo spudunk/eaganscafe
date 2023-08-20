@@ -1,7 +1,6 @@
 <script lang="ts">
   import { tab } from "$lib/stores";
   import { page } from "$app/stores";
-  import { goto } from "$app/navigation";
 
   export let id: string;
 
