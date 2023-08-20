@@ -21,7 +21,8 @@
 <div class="w-full flex justify-center">
   <button
     on:click={toggleFontSize}
-    class="outline outline-neutral-400 py-1 px-2 mt-4 rounded md:hidden"
+    class="border border-neutral-400 py-1 px-2 mt-4 rounded  md:hidden"
     >MAKE {larger ? "SMALLER" : "LARGER"}</button
   >
 </div>
+
