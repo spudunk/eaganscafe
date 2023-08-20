@@ -15,9 +15,8 @@
 <button
   on:click={() => {
     tab.set(id);
-    $page.url.searchParams.set('tab', id);
+    $page.url.searchParams.set("tab", id);
     goto(`?${$page.url.searchParams.toString()}`);
-
   }}
   class={`py-1 px-2 rounded-t font-bold ${
     selectedTab == id ? "border-t border-r border-l" : "text-neutral-500"
