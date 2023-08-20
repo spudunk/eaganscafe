@@ -41,22 +41,22 @@
     <TabButton id="breakfast">Breakfast</TabButton>
   </div>
 
-  {#if selectedTab == "lunch"}
+  <!-- {#if selectedTab == "lunch"} -->
     <!-- Lunch -->
-    <section id="lunch" class="pt-8 grid gap-8 justify-center">
+    <section id="lunch" class={`pt-8 grid gap-8 justify-center ${!(selectedTab == 'lunch') ? 'hidden' : ''} print:block print:break-after-page`}>
       {#each lunchSections as section}
         <MenuSection menu={ethelLunchMenu[section]} />
       {/each}
     </section>
-  {:else if selectedTab == "breakfast"}
+  <!-- {:else if selectedTab == "breakfast"} -->
     <!-- Breakfast -->
     <section
       id="breakfast"
-      class="pt-8 grid gap-8 justify-center break-inside-avoid"
+      class={`pt-8 grid gap-8 justify-center ${!(selectedTab == 'breakfast') ? 'hidden' : ''} print:block`}
     >
       {#each breakfastSections as section}
         <MenuSection menu={ethelBreakfastMenu[section]} />
       {/each}
     </section>
-  {/if}
+  <!-- {/if} -->
 </main>
