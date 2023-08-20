@@ -1,15 +1,15 @@
 <script lang="ts">
   import { page } from "$app/stores";
+  import { browser } from "$app/environment";
+  import { tab } from "$lib/stores";
   import { ethelLunchMenu, ethelBreakfastMenu } from "$lib/menu";
   import { ethelInfo } from "$lib/info";
-  import { tab } from "$lib/stores";
   import MenuSection from "$lib/components/MenuSection.svelte";
   import Header from "$lib/components/Header.svelte";
   import SizeButton from "$lib/components/SizeButton.svelte";
   import SEO from "$lib/components/SEO.svelte";
   import Info from "$lib/components/Info.svelte";
   import TabButton from "$lib/components/TabButton.svelte";
-  import { browser } from "$app/environment";
 
   let selectedTab: string;
   tab.subscribe((value) => {
@@ -47,7 +47,7 @@
       !(selectedTab == "lunch") ? "hidden" : ""
     } print:block print:break-after-page`}
   >
-    {#each Object.entries(ethelLunchMenu) as [_, section]}
+    {#each Object.values(ethelLunchMenu) as section}
       <MenuSection menu={section} />
     {/each}
   </section>
@@ -59,7 +59,7 @@
       !(selectedTab == "breakfast") ? "hidden" : ""
     } print:block`}
   >
-    {#each Object.entries(ethelBreakfastMenu) as [_, section]}
+    {#each Object.values(ethelBreakfastMenu) as section}
       <MenuSection menu={section} />
     {/each}
   </section>

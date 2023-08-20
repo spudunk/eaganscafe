@@ -18,7 +18,7 @@
   <SizeButton />
 
   <section id="menu" class="grid gap-8 justify-center">
-    {#each Object.entries(teninoMenu) as [_, section]}
+    {#each Object.values(teninoMenu) as section}
       <MenuSection menu={section} />
     {/each}
   </section>
