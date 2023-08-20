@@ -19,14 +19,14 @@
     <!-- home page Heading -->
     <a href={info.route} class="px-2 py-1">
       <h1
-        class={`text-2xl font-bold text-blue-800 dark:text-blue-300 underline`}
+        class="text-2xl font-bold text-blue-800 dark:text-blue-300 underline"
       >
         {info.heading}
       </h1>
     </a>
   {:else}
     <!-- location page Heading -->
-    <h2 class={`px-2 py-1 text-2xl font-bold`}>{info.heading}</h2>
+    <h2 class="px-2 py-1 text-2xl font-bold">{info.heading}</h2>
   {/if}
   <a
     class="text-blue-900 dark:text-blue-200 underline px-2 py-1"
