@@ -36,7 +36,7 @@
   <SizeButton />
 
   <!-- Tabs -->
-  <div class="flex gap-2 text-xl mt-8 px-2 border-b">
+  <div class="flex gap-2 text-xl mt-8 px-2 border-b print:hidden">
     <TabButton id="lunch">Lunch</TabButton>
     <TabButton id="breakfast">Breakfast</TabButton>
   </div>
