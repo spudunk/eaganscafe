@@ -2,11 +2,11 @@
   // @ts-nocheck
   import { teninoMenu } from "$lib/menu";
   import { teninoInfo } from "$lib/info";
-  import MenuSection from "../../components/MenuSection.svelte";
-  import Header from "../../components/Header.svelte";
-  import SizeButton from "../../components/SizeButton.svelte";
-  import SEO from "../../components/SEO.svelte";
-  import Info from "../../components/Info.svelte";
+  import MenuSection from "$lib/components/MenuSection.svelte";
+  import Header from "$lib/components/Header.svelte";
+  import SizeButton from "$lib/components/SizeButton.svelte";
+  import SEO from "$lib/components/SEO.svelte";
+  import Info from "$lib/components/Info.svelte";
   const sections = Object.keys(teninoMenu);
 </script>
 

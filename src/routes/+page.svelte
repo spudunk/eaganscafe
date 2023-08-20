@@ -1,8 +1,8 @@
 <script>
   // @ts-nocheck
-  import Header from "../components/Header.svelte";
-  import SEO from "../components/SEO.svelte";
-  import Info from "../components/Info.svelte";
+  import Header from "$lib/components/Header.svelte";
+  import SEO from "$lib/components/SEO.svelte";
+  import Info from "$lib/components/Info.svelte";
   import { ethelInfo, teninoInfo } from "$lib/info";
   import { preloadData } from "$app/navigation";
   import { onMount } from "svelte";
