@@ -18,7 +18,7 @@
   });
 </script>
 
-<div class="w-full flex justify-center">
+<div class="w-full flex justify-center print:hidden">
   <button
     on:click={toggleFontSize}
     class="border border-neutral-400 py-1 px-2 mt-4 rounded  md:hidden"
