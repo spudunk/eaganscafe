@@ -29,13 +29,13 @@
     <h2 class="px-2 py-1 text-2xl font-bold">{info.heading}</h2>
   {/if}
   <a
-    class="text-blue-900 dark:text-blue-200 underline px-2 py-1"
+    class="text-blue-900 dark:text-blue-200 underline px-4 py-2"
     target="_blank"
     href={info.navLink}
   >
     {info.address}
   </a>
-  <a href={info.telLink} class="text-blue-900 dark:text-blue-200 underline"
+  <a href={info.telLink} class="text-blue-900 dark:text-blue-200 underline px-4 py-2"
     >{info.tel}</a
   >
   {#each info.details as line}
