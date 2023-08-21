@@ -29,5 +29,6 @@
   {#if img}
     <meta name="twitter:image" content={img} />
   {/if}
-  <!-- <link rel=“canonical” href=“https://eaganscafe.com” /> -->
+
+  <link rel=“canonical” href={url} />
 </svelte:head>
