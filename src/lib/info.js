@@ -21,4 +21,4 @@ export const teninoInfo = {
 };
 
 export const description =
-  "Family owned cafes serving burgers, fries, shakes, and more. Locations in Ethel and Tenino, WA. Call in an order today!";
+  "Eagans are family owned cafes serving burgers, fries, shakes, and more. Locations in Ethel and Tenino, WA. Call in an order today!";
