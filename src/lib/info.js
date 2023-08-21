@@ -2,7 +2,7 @@
 
 export const ethelInfo = {
   route: "/ethel",
-  heading: "Ethel Eagans Cafe",
+  heading: "Ethel Eagans Diner",
   address: "1411 US-12, Ethel, WA",
   navLink: "https://goo.gl/maps/VNbK7vR7Se9qGrWD6",
   telLink: "tel:+13609785410",
@@ -12,7 +12,7 @@ export const ethelInfo = {
 
 export const teninoInfo = {
   route: "/tenino",
-  heading: "Eagans T9O Cafe",
+  heading: "Eagans T9O Diner",
   address: "472 Sussex Ave, Tenino, WA",
   navLink: "https://goo.gl/maps/3Cc7i32nLEW3wANN8",
   telLink: "tel:+13602648791",
@@ -21,4 +21,4 @@ export const teninoInfo = {
 };
 
 export const description =
-  "Eagans are family owned cafes serving burgers, fries, shakes, and more. Locations in Ethel and Tenino, WA. Call in an order today!";
+  "Eagans are family owned diners serving burgers, fries, shakes, and more. Locations in Ethel and Tenino, WA. Call in an order today!";

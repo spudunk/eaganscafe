@@ -7,7 +7,7 @@
   class="fixed top-0 left-0 w-full bg-neutral-200 dark:bg-neutral-800 opacity-90 py-2 print:hidden"
 >
   <div class="container flex justify-between items-center">
-    <a class="logo" href="/">Eagans Cafe</a>
+    <a class="logo" href="/">Eagans Diner</a>
 
     {#if tel}
       <div>

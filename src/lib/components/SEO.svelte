@@ -1,7 +1,7 @@
 <script lang="ts">
   import { description as defaultDescription } from "$lib/info";
   export let description = defaultDescription;
-  export let title = "Eagans Cafe";
+  export let title = "Eagans Diner";
   export let url = "https://eaganscafe.com";
   export let img = "";
 </script>
