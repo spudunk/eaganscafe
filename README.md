@@ -1,4 +1,4 @@
-# Eagans Cafe Web App
+# Eagans Diner Web App
 
 Built with Svelte, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
 
