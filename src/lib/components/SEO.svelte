@@ -2,7 +2,7 @@
   import { description as defaultDescription } from "$lib/info";
   export let description = defaultDescription;
   export let title = "Eagans Diner";
-  export let url = "https://eaganscafe.com";
+  export let url = "https://eagansdiner.com";
   export let img = "";
 </script>
 
