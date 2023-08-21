@@ -18,15 +18,15 @@
   {#if $page.url.pathname == "/"}
     <!-- home page Heading -->
     <a href={info.route} class="px-2 py-1">
-      <h1
+      <h2
         class="text-2xl font-bold text-blue-800 dark:text-blue-300 underline"
       >
         {info.heading}
-      </h1>
+      </h2>
     </a>
   {:else}
     <!-- location page Heading -->
-    <h2 class="px-2 py-1 text-2xl font-bold">{info.heading}</h2>
+    <h1 class="px-2 py-1 text-2xl font-bold">{info.heading}</h1>
   {/if}
   <a
     class="text-blue-900 dark:text-blue-200 underline px-4 py-2"
