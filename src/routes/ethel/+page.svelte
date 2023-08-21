@@ -23,10 +23,13 @@
       }
     });
   }
-
 </script>
 
-<SEO url="https://eaganscafe.com/ethel" title="Ethel Eagans Cafe" />
+<SEO
+  title={ethelInfo.heading}
+  url="https://eaganscafe.com/ethel"
+  description="Ethel Eagans has now opened in the old Kelly's Kountry Kafe location in Ethel, WA. Come try us out for Breakfast and Lunch or call in your order for pick-up."
+/>
 
 <Header phone="(360) 978-5410" tel="+13609785410" />
 
