@@ -2,6 +2,12 @@
 
 Built with Svelte, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
 
+## Updating
+Menu data is contained in src/lib/menu.js. Schema for the menu data is commented at the bottom of the menu.js file. 
+
+Pages for individual routes are contained in src/routes. 
+All of the redundant components are contained in src/lib/components.  
+
 ## Developing
 
 1. Copy this repo
@@ -10,9 +16,6 @@ Built with Svelte, powered by [`create-svelte`](https://github.com/sveltejs/kit/
 
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
 ## Building
@@ -22,7 +25,8 @@ To create a production version of your app:
 ```bash
 npm run build
 ```
+For performance the entire site has static building enabled in src/routes/+layout.server.js
 
 You can preview the production build with `npm run preview`.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+> Your app currently uses the cloudflare [adapter](https://kit.svelte.dev/docs/adapters) for the Cloudflare  environment.
