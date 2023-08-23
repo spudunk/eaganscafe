@@ -18,8 +18,10 @@
   <SizeButton />
 
   <section id="menu" class="grid gap-8 justify-center">
-    {#each Object.values(teninoMenu) as section}
+    <p class="mt-8 max-w-[70ex] text-center">T9O menu coming soon. For prices please see our Facebook. <br /> To place an order please call. </p>
+
+    <!-- {#each Object.values(teninoMenu) as section}
       <MenuSection menu={section} />
-    {/each}
+    {/each} -->
   </section>
 </main>
