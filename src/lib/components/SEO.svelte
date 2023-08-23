@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { description as defaultDescription } from "$lib/info";
-  export let description = defaultDescription;
-  export let title = "Eagans Diner";
-  export let url = "https://eagansdiner.com";
+  import { info, description as defaultDescription } from "$lib/info";
+  export let description = defaultDescription; // prop but use lib/info as default
+  export let title = info.title;
+  export let url = info.url;
   export let img = "";
 </script>
 
@@ -30,5 +30,5 @@
     <meta name="twitter:image" content={img} />
   {/if}
 
-  <link rel=“canonical” href={url} />
+  <link rel="“canonical”" href={url} />
 </svelte:head>
