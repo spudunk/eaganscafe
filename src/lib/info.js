@@ -8,6 +8,8 @@ export const ethelInfo = {
   telLink: "tel:+13609785410",
   tel: "(360) 978-5410",
   details: ["Mon-Wed 10am - 8pm", "Thur-Sun 7am - 8pm"],
+  facebookLink: "",
+  facebookName: "",
 };
 
 export const teninoInfo = {
@@ -18,6 +20,8 @@ export const teninoInfo = {
   telLink: "tel:+13602648791",
   tel: "(360) 264-8791",
   details: ["Mon-Thu 11am - 7pm", "Fri-Sat 11am - 8pm", "Sun 12pm - 6pm"],
+  facebookLink: "https://www.facebook.com/eaganst9o/",
+  facebookName: "Loretta Eagan's T90",
 };
 
 export const description =
