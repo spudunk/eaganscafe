@@ -8,7 +8,7 @@
   import Info from "$lib/components/Info.svelte";
 </script>
 
-<SEO title={teninoInfo.heading} url="https://eaganscafe.com/tenino" description="Eagans T9O Drive-In is located in Tenino, WA. Come try us out for lunch or call in an order for pick-up." />
+<SEO title={teninoInfo.heading} url="https://eagansdiner.com/tenino" description="Eagans T9O Drive-In is located in Tenino, WA. Come try us out for lunch or call in an order for pick-up." />
 
 <Header phone="(360) 264-8791" tel="+13602648791" />
 
