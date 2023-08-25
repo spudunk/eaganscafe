@@ -381,7 +381,6 @@ export const teninoMenu = {
     description: [
       "Make any burger into a basket!! choose your favorite burger and your side",
       "served with a small (16 oz) soda or coffee",
-      "with fries add $3.50, with tater tots add $3.75, with onion rings add $4.00",
       "All of our burgers are made with fresh 100% beef and fresh vegetables",
     ],
     items: [
@@ -389,70 +388,70 @@ export const teninoMenu = {
         name: "Spicy Cowboy",
         description:
           "1 beef patty, bacon, Jalepeños, Pepper-jack cheese, lettuce, tomato, sriracha and goop",
-        price: 6.5,
+        price: 0,
       },
       {
         name: "Trailer",
         description:
           "2 beef patties, bacon, Swiss and American cheese, lettuce, tomato, Onion Rings, BBQ sauce and goop",
-        price: 11.0,
+        price: 0,
       },
       {
         name: "A1 Steak Sandwich",
         description:
           "1/2 pound beef patty, 3 slices bacon, Swiss and American cheese, tomatoes, grilled onions, A-1 and goop served on a grilled Pub Roll",
-        price: 9.25,
+        price: 0,
       },
       {
         name: "Trucker",
         description:
           '3 beef patties, 3 slices American cheese, pickles, lettuce, tomatoes and goop served on a 5" bun',
-        price: 8.5,
+        price: 0,
       },
       {
         name: "Big T",
         description:
           "2 beef patties, 2 slices American cheese, pickles, lettuce, tomatoes and goop",
-        price: 6.5,
+        price: 0,
       },
       {
         name: "Little T",
         description:
           "2 beef patties, 2 slices American cheese, pickles and goop",
-        price: 6.0,
+        price: 0,
       },
       {
         name: "Bacon Cheese",
         description:
           "1 beef patty, 1 slice American cheese, 2 slices thick cut bacon, pickles, lettuce, tomatoes and goop",
-        price: 6.5,
+        price: 0,
       },
       {
         name: "Deluxe Cheese",
         description:
           "1 beef patty, 1 slice American cheese, pickles, lettuce, tomatoes and goop",
-        price: 5.0,
+        price: 0,
       },
       {
         name: "Regular Cheese",
         description: "1 beef patty, 1 slice American cheese, pickles and goop",
-        price: 4.0,
+        price: 0,
       },
       {
         name: "Mushroom Swiss",
         description:
           "1 beef patty, 1 slice Swiss cheese, sauteed mushrooms with special spices, lettuce, tomatoes and goop",
-        price: 6.5,
+        price: 0,
       },
       {
         name: "Chicken Burger",
         description: "Chicken, lettuce, tomato and mayo",
-        price: 5.25,
+        price: 0,
       },
       {
         name: "Fish Burger",
         description: "A cod fillet, lettuce and goop",
-        price: 5.5,
+        price: 0,
       },
     ],
   },
@@ -460,31 +459,30 @@ export const teninoMenu = {
     heading: "Sandwiches",
     description: [
       "All Sandwiches come with choice of side",
-      "add $1.00 for a Pub Roll (except the Downtown)",
     ],
     items: [
       {
         name: "Tuna Fish",
         description:
           "Pick your style, Tuna, pickles, lettuce, tomato and mayo on your choice of bread OR melt it up with cheese",
-        price: 6.75,
+        price: 0,
       },
       {
         name: "BLT",
         description:
           "4 slices thick cut bacon, lettuce, tomato and mayo on choice of bread",
-        price: 7.75,
+        price: 0,
       },
       {
         name: "Downtown",
         description:
           "Grilled deli style turkey breast, 2 strips thick cut bacon, Swiss cheese, tomatoes and avocodo spread grilled on sourdough or a pub roll",
-        price: 9.75,
+        price: 0,
       },
       {
         name: "Grilled Cheese",
         description: "American cheese grilled on your choice of bread",
-        price: 5.75,
+        price: 0,
       },
     ],
   },
@@ -495,34 +493,34 @@ export const teninoMenu = {
       {
         name: "French Fries",
         sizes: [
-          { size: "Small", price: 2.25 },
-          { size: "Large", price: 3.5 },
+          { size: "Small", price: 0 },
+          { size: "Large", price: 0 },
         ],
       },
       {
         name: "Tater Tots",
         sizes: [
-          { size: "Small", price: 2.75 },
-          { size: "Large", price: 4.0 },
+          { size: "Small", price: 0 },
+          { size: "Large", price: 0 },
         ],
       },
       {
         name: "Onion Rings",
         sizes: [
-          { size: "Small", price: 3.0 },
-          { size: "Large", price: 4.25 },
+          { size: "Small", price: 0 },
+          { size: "Large", price: 0 },
         ],
       },
       {
         name: "Puppy Patty",
         description: "extra beef patty",
-        price: 2.0,
+        price: 0,
       },
       {
         name: "Sauces",
         description:
           "Goop, Tarter Sauce, Pink Sauce, BBQ, Ranch, Honey Mustard and Spicy Pink Sauce",
-        price: 0.25,
+        price: 0,
       },
     ],
   },
