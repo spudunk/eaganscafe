@@ -22,8 +22,8 @@ export const teninoInfo = {
   telLink: "tel:+13602648791",
   tel: "(360) 264-8791",
   details: ["Mon-Thu 11am - 7pm", "Fri-Sat 11am - 8pm", "Sun 12pm - 6pm"],
-  facebookLink: "https://www.facebook.com/eaganst9o/",
-  facebookName: "Loretta Eagan's T90",
+  facebookLink: "https://facebook.com/profile.php?id=100063745321120",
+  facebookName: "Loretta Eagan's T9O",
 };
 
 export const description =
