@@ -3,6 +3,7 @@
   import IconMapMarker from "~icons/mdi/map-marker";
   import IconPhone from "~icons/mdi/phone";
   import IconFacebook from "~icons/ant-design/facebook-filled";
+  import IconRestaurantMenu from "~icons/mdi/restaurant-menu";
 
 
   export let info = {
@@ -25,7 +26,8 @@
   {#if $page.url.pathname == "/"}
     <!-- home page Heading -->
     <a href={info.route} class="px-2 py-1">
-      <h2 class="text-2xl font-bold text-blue-800 dark:text-blue-300 underline">
+      <h2 class="flex gap-4 items-center text-2xl font-bold text-blue-800 dark:text-blue-300 underline">
+        <IconRestaurantMenu />
         {info.heading}
       </h2>
     </a>
