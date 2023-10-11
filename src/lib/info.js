@@ -8,7 +8,7 @@ export const ethelInfo = {
   navLink: "https://goo.gl/maps/VNbK7vR7Se9qGrWD6",
   telLink: "tel:+13609785410",
   tel: "(360) 978-5410",
-  details: ["Open Every Day 7am - 8pm"],
+  details: ["Open Every Day 8am - 7pm"],
   facebookLink: "",
   facebookName: "",
 };
