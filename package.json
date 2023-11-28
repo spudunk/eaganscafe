@@ -7,7 +7,8 @@
 		"build": "vite build",
 		"preview": "vite preview --host",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch"
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
+		"pages:dev": "wrangler pages dev -k KV --compatibility-date=2023-05-18 --proxy 5173 -- bun run dev"
 	},
 	"devDependencies": {
 		"@iconify-json/ant-design": "^1.1.8",
