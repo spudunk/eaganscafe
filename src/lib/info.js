@@ -34,4 +34,4 @@ export const description =
 export const info = {
   title: "Eagans Diner",
   url: "https://eagansdiner.com",
-}
+};
