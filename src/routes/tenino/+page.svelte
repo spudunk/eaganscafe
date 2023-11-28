@@ -1,11 +1,13 @@
 <script lang="ts">
   import { teninoMenu } from "$lib/menu";
-  import { info } from "$lib/info";
+  // import { info } from "$lib/info";
   import MenuSection from "$lib/components/MenuSection.svelte";
   import Header from "$lib/components/Header.svelte";
   import SizeButton from "$lib/components/SizeButton.svelte";
   import SEO from "$lib/components/SEO.svelte";
   import Info from "$lib/components/Info.svelte";
+  export let data;
+  const info = data;
   const teninoInfo = info.tenino;
 </script>
 
