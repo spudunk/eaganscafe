@@ -7,7 +7,7 @@
   import { onMount } from "svelte";
 
   export let data;
-  console.log(data);
+  console.log("+page.svelte data: ", data);
 
   onMount(() => {
     preloadData("/ethel");
