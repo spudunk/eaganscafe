@@ -2,12 +2,14 @@
   import Header from "$lib/components/Header.svelte";
   import SEO from "$lib/components/SEO.svelte";
   import Info from "$lib/components/Info.svelte";
-  import { ethelInfo, teninoInfo, description } from "$lib/info";
+  import { info } from "$lib/info";
   import { preloadData } from "$app/navigation";
   import { onMount } from "svelte";
 
   export let data;
+  console.log(data);
 
+  // const info = data.info;
   // console.log("data: ", data)
 
   onMount(() => {
@@ -23,8 +25,8 @@
 <main class="container text-center flex flex-col items-center gap-4">
   <h1 class="text-3xl">Eagans Diners</h1>
   <p class="max-w-[70ex]">
-    {description}
+    {info.description}
   </p>
-  <Info info={ethelInfo} class="" />
-  <Info info={teninoInfo} class="" />
+  <Info info={info.ethel} class="" />
+  <Info info={info.ethel} class="" />
 </main>
