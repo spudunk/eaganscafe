@@ -7,7 +7,7 @@
   import { onMount } from "svelte";
 
   export let data;
-  console.log("+page.svelte data: ", data);
+  // console.log("+page.svelte data: ", data);
   const info = data;
 
   onMount(() => {
