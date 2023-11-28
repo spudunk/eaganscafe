@@ -1,5 +1,8 @@
-# Svelte Kit
+# Cloudflare
+.wrangler
 
+
+# Svelte Kit
 .DS_Store
 node_modules
 /build
@@ -66,4 +69,3 @@ node_modules/
 
 # dotenv environment variables file
 
-.wrangler
