@@ -4,5 +4,5 @@ import { json } from "@sveltejs/kit";
 export async function GET({ platform }) {
   const info = await platform?.env?.KV.get("info", { type: "json" });
   console.log("+server.js info: ", info);
-  return json(info);
+  return info;
 }
