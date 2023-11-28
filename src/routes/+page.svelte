@@ -8,7 +8,7 @@
 
   export let data;
   // console.log("+page.svelte data: ", data);
-  const info = data;
+
 
   onMount(() => {
     preloadData("/ethel");
@@ -18,13 +18,13 @@
 
 <SEO />
 
-<Header phone="" />
+<Header />
 
 <main class="container text-center flex flex-col items-center gap-4">
   <h1 class="text-3xl">Eagans Diners</h1>
   <p class="max-w-[70ex]">
-    {info.description}
+    {data.description}
   </p>
-  <Info info={info.ethel} class="" />
-  <Info info={info.tenino} class="" />
+  <Info info={data.ethelInfo} class="" />
+  <Info info={data.teninoInfo} class="" />
 </main>
