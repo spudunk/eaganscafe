@@ -9,7 +9,7 @@ export const ethelInfo = {
   telLink: "tel:+13609785410",
   tel: "(360) 978-5410",
   details: ["Open Every Day 8am - 7pm"],
-  facebookLink: "https://www.facebook.com/profile.php?id=61553748759189",
+  facebookLink: "https://facebook.com/profile.php?id=61553748759189",
   facebookName: "Ethel Eagans",
   showPrices: true,
 };
