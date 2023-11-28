@@ -8,6 +8,7 @@ export async function load(context) {
     };
   } catch (error) {
     console.error(error);
-    return { info: info };
+    // return { info: info };
+    return {info: {}};
   }
 }
