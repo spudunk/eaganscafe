@@ -7,7 +7,13 @@ declare global {
 		// interface Error {}
 		// interface Locals {}
 		// interface PageData {}
-		// interface Platform {}
+		interface Platform {
+			env: {
+				KV: KVNamespace;
+				// DB: D1Database;
+				// BUCKET: R2Bucket;
+			};
+		}
 	}
 }
 
