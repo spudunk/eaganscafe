@@ -6,7 +6,9 @@
   import { preloadData } from "$app/navigation";
   import { onMount } from "svelte";
 
-  // export let data;
+  export let data;
+
+  // console.log("data: ", data)
 
   onMount(() => {
     preloadData("/ethel");
