@@ -26,5 +26,5 @@
     {info.description}
   </p>
   <Info info={info.ethel} class="" />
-  <Info info={info.ethel} class="" />
+  <Info info={info.tenino} class="" />
 </main>

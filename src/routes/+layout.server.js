@@ -1,4 +1,4 @@
-import { info } from "$lib/info";
+// import { info } from "$lib/info";
 
 /** @type {import('./$types').LayoutServerLoad} */
 export async function load(context) {
