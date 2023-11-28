@@ -8,10 +8,9 @@ declare global {
 		// interface Locals {}
 		// interface PageData {}
 		interface Platform {
-			env: {
+			env?: {
 				KV: KVNamespace;
-				// DB: D1Database;
-				// BUCKET: R2Bucket;
+				// DURABLE_OBJECT_NAMESPACE: DurableObjectNamespace;
 			};
 		}
 	}
