@@ -2,13 +2,13 @@
   import Header from "$lib/components/Header.svelte";
   import SEO from "$lib/components/SEO.svelte";
   import Info from "$lib/components/Info.svelte";
-  // import { info } from "$lib/info";
+  import { info } from "$lib/info";
   import { preloadData } from "$app/navigation";
   import { onMount } from "svelte";
 
   export let data;
+
   console.log(data);
-  const info = data.info;
 
   onMount(() => {
     preloadData("/ethel");
