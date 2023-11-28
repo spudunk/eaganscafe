@@ -1,7 +1,7 @@
 export async function load({ fetch, params }) {
 	// const res = await fetch(`/api/items/${params.id}`);
 	const res = await fetch(`/api`);
-	const info = await res.json();
+	const info = JSON.parse(await res.text());
 
 	return { info };
 }
