@@ -1,5 +1,5 @@
 
 export async function GET({ request, platform }) {
-	const info = await platform?.env?.KV.get('info');
+	const info = await platform?.env?.KV.get('info', {type: "json"});
   return new Response(info)
 }
