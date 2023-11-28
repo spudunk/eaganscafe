@@ -7,20 +7,18 @@
   import SEO from "$lib/components/SEO.svelte";
   import Info from "$lib/components/Info.svelte";
   export let data;
-  const teninoInfo = data.teninoInfo;
-  const teninoMenu = data.teninoMenu;
 </script>
 
 <SEO
-  title={teninoInfo.heading}
-  url={teninoInfo.url}
+  title={data.teninoInfo.heading}
+  url={data.teninoInfo.url}
   description="Eagans T9O Drive-In is located in Tenino, WA. Come try us out for lunch or call in an order for pick-up."
 />
 
 <Header phone="(360) 264-8791" tel="+13602648791" />
 
 <main class="container">
-  <Info info={teninoInfo} />
+  <Info info={data.teninoInfo} />
 
   <SizeButton />
 
@@ -32,7 +30,7 @@
       </p>
     </div>
 
-    {#each Object.values(teninoMenu) as section}
+    {#each Object.values(data.teninoMenu) as section}
       <MenuSection menu={section} />
     {/each}
   </section>
