@@ -9,8 +9,9 @@ export const ethelInfo = {
   telLink: "tel:+13609785410",
   tel: "(360) 978-5410",
   details: ["Open Every Day 8am - 7pm"],
-  facebookLink: "",
-  facebookName: "",
+  facebookLink: "https://www.facebook.com/profile.php?id=61553748759189",
+  facebookName: "Ethel Eagans",
+  showPrices: true,
 };
 
 export const teninoInfo = {
@@ -24,6 +25,7 @@ export const teninoInfo = {
   details: ["Mon-Thu 11am - 7pm", "Fri-Sat 11am - 8pm", "Sun 12pm - 6pm"],
   facebookLink: "https://facebook.com/profile.php?id=100063745321120",
   facebookName: "Loretta Eagan's T9O",
+  showPrices: false,
 };
 
 export const description =
