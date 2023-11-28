@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { info, description as defaultDescription } from "$lib/info";
-  export let description = defaultDescription; // prop but use lib/info as default
+  import { info } from "$lib/info";
+  export let description = info.description; // prop but use lib/info as default
   export let title = info.title;
   export let url = info.url;
   export let img = "";
