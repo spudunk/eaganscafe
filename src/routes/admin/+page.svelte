@@ -18,10 +18,12 @@
     data = data;
   };
 
-  const initData = async () => {
+  const initData = () => {
     data = originalData;
+    console.log("reset data with originalData entry by entry");
   };
 </script>
+
 <Header />
 
 <div class="container flex gap-2 mb-6">
@@ -61,10 +63,11 @@
             bind:value={detail}
           />
           <button
+            class="p-1"
             on:click={() => {
               data.ethelInfo.details.splice(index, 1);
               data = data;
-            }}>Remove</button
+            }}>X</button
           >
         </div>
       {/each}
@@ -90,10 +93,11 @@
             bind:value={detail}
           />
           <button
+            class="p-1"
             on:click={() => {
               data.teninoInfo.details.splice(index, 1);
               data = data;
-            }}>Remove</button
+            }}>X</button
           >
         </div>
       {/each}
