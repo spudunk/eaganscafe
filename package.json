@@ -8,7 +8,7 @@
     "preview": "vite preview --host",
     "check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
-    "pages:preview": "wrangler pages dev ./.svelte-kit/cloudflare",
+    "pages:preview": "wrangler pages dev ./.svelte-kit/cloudflare --live-reload",
 		"pages:dev": "wrangler pages dev --proxy 5173 --compatibility-date=2023-09-04 -- vite dev --host --port 5173"
   },
   "devDependencies": {
