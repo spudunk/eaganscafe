@@ -1,5 +1,6 @@
 <script>
   import originalData from "$lib/data.js";
+  import Header from "$lib/components/Header.svelte";
 
   export let data;
 
@@ -21,15 +22,16 @@
     data = originalData;
   };
 </script>
+<Header />
 
 <div class="container flex gap-2 mb-6">
   <button
     class="py-1 px-2 border border-neutral-500 rounded"
-    on:click={saveData}>SAVE DATA</button
+    on:click={saveData}>SAVE</button
   >
   <button
     class="py-1 px-2 border border-neutral-500 rounded"
-    on:click={initData}>RESET DATA</button
+    on:click={initData}>RESET</button
   >
 </div>
 
