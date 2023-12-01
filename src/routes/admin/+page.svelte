@@ -1,12 +1,22 @@
 <script>
-  import originalData from "$lib/data.js";
+  import originalData from "$lib/data";
   import Header from "$lib/components/Header.svelte";
+  import LocationDetailsForm from "./LocationDetailsForm.svelte";
 
   export let data;
 
-  $: data = data;
+  const resetString = JSON.stringify(originalData);
 
+  $: data = data;
+  $: saving = false;
+
+  const refresh = () => {
+    data = data;
+  };
+
+  // Post current data object to server
   const saveData = async () => {
+    saving = true;
     const res = await fetch("/admin", {
       method: "POST",
       body: JSON.stringify(data),
@@ -15,16 +25,22 @@
       },
     });
     console.log("data post response: \n", await res.json());
+    saving = false;
     data = data;
+    return
   };
 
-  const initData = () => {
-    data = originalData;
-    console.log("reset data with originalData entry by entry");
+  // load original data
+  const resetData = () => {
+    data = JSON.parse(resetString);
+    refresh();
+    console.log("reset data with originalData");
+    return
   };
 </script>
 
 <Header />
+
 
 <div class="container flex gap-2 mb-6">
   <button
@@ -33,11 +49,15 @@
   >
   <button
     class="py-1 px-2 border border-neutral-500 rounded"
-    on:click={initData}>RESET</button
+    on:click={resetData}>RESET</button
   >
 </div>
+{#if saving}
+  <p>saving...</p>  
+{/if}
 
 <div class="container flex flex-col gap-6">
+  <!-- Description Editor -->
   {#if data.description}
     <div class="flex flex-col gap-2">
       <label for="description">Description</label>
@@ -50,63 +70,17 @@
     </div>
   {/if}
 
+  <!-- Ethel Info -->
   {#if data.ethelInfo?.details}
-    <div class="flex flex-col gap-2">
-      <p>Ethel Details</p>
-      {#each data.ethelInfo.details as detail, index}
-        <div class="flex gap-2">
-          <input
-            class="w-full bg-slate-800 p-1"
-            type="text"
-            name="ethelDetails"
-            id="ethelDetails"
-            bind:value={detail}
-          />
-          <button
-            class="p-1"
-            on:click={() => {
-              data.ethelInfo.details.splice(index, 1);
-              data = data;
-            }}>X</button
-          >
-        </div>
-      {/each}
-      <button
-        on:click={() => {
-          data.ethelInfo.details.push("");
-          data = data;
-        }}>Add Line</button
-      >
-    </div>
+    <LocationDetailsForm locationInfo={data.ethelInfo} on:refresh={refresh} />
+  {:else}
+    <div><p>No data from database</p></div>
   {/if}
 
+  <!-- T9O Info -->
   {#if data.teninoInfo?.details}
-    <div class="flex flex-col gap-2">
-      <p>T9O Details</p>
-      {#each data.teninoInfo.details as detail, index}
-        <div class="flex gap-2">
-          <input
-            class="w-full bg-slate-800 p-1"
-            type="text"
-            name="ethelDetails"
-            id="ethelDetails"
-            bind:value={detail}
-          />
-          <button
-            class="p-1"
-            on:click={() => {
-              data.teninoInfo.details.splice(index, 1);
-              data = data;
-            }}>X</button
-          >
-        </div>
-      {/each}
-      <button
-        on:click={() => {
-          data.teninoInfo.details.push("");
-          data = data;
-        }}>Add Line</button
-      >
-    </div>
+    <LocationDetailsForm locationInfo={data.teninoInfo} on:refresh={refresh} />
+  {:else}
+    <div><p>No data from database</p></div>
   {/if}
 </div>
