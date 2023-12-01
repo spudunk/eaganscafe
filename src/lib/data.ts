@@ -570,6 +570,8 @@ const data = {
 
 export default data;
 
+export type LocationInfo = typeof data.ethelInfo;
+
 // menu template
 // let menu = {
 //   sectionTitle: {
