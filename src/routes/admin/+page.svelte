@@ -51,10 +51,10 @@
     class="py-1 px-2 border border-neutral-500 rounded"
     on:click={resetData}>RESET</button
   >
+  {#if saving}
+    <span>saving...</span>  
+  {/if}
 </div>
-{#if saving}
-  <p>saving...</p>  
-{/if}
 
 <div class="container flex flex-col gap-6">
   <!-- Description Editor -->
