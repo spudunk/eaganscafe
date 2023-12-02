@@ -49,6 +49,7 @@
 <div class="container flex gap-2 mb-6 items-center">
   <button
     class="py-1 px-2 border border-neutral-500 rounded"
+    disabled={saving}
     on:click={saveData}>SAVE</button
   >
   <button
