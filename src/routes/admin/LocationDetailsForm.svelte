@@ -27,7 +27,9 @@
       >
     </div>
   {/each}
+
   <button
+    class="py-1 px-4 border border-neutral-500 rounded w-fit self-center"
     on:click={() => {
       locationInfo.details.push("");
       dispatch("refresh");
