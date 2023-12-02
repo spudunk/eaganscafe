@@ -34,7 +34,6 @@
   const resetData = () => {
     data = JSON.parse(resetString);
     refresh();
-    console.log("reset data with originalData");
     return
   };
 </script>
