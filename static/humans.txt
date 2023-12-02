@@ -2,6 +2,7 @@
 	Developer: Christopher Hicks
 	Contact: chris [at] webboot.io
 	Twitter: @topher_hicks
+	Website: webboot.io
 	From: Toledo, WA, USA
 
 /* THANKS */
