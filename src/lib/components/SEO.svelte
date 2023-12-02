@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { info, description as defaultDescription } from "$lib/info";
-  export let description = defaultDescription; // prop but use lib/info as default
-  export let title = info.title;
-  export let url = info.url;
+  import data from "$lib/data";
+  export let description = data.description; // prop but use lib/info as default
+  export let title = data.title;
+  export let url = data.url;
   export let img = "";
 </script>
 

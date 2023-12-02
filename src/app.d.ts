@@ -7,7 +7,12 @@ declare global {
 		// interface Error {}
 		// interface Locals {}
 		// interface PageData {}
-		// interface Platform {}
+		interface Platform {
+			env?: {
+				KV: KVNamespace;
+				// DURABLE_OBJECT_NAMESPACE: DurableObjectNamespace;
+			};
+		}
 	}
 }
 
