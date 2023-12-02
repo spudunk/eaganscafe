@@ -8,14 +8,12 @@
 </script>
 
 <div class="flex flex-col gap-2">
-  <p>Ethel Details</p>
+  <p>Details: {locationInfo.heading}</p>
   {#each locationInfo.details as detail, index}
     <div class="flex gap-2">
       <input
         class="w-full bg-slate-800 p-1"
         type="text"
-        name="ethelDetails"
-        id="ethelDetails"
         bind:value={detail}
       />
       <button

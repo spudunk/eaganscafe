@@ -72,7 +72,7 @@
 
 <div class="container flex flex-col gap-6">
   <!-- Description Editor -->
-  {#if data.description}
+  {#if data.description !== undefined}
     <div class="flex flex-col gap-2">
       <label for="description">Description</label>
       <textarea
