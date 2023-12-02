@@ -5,7 +5,7 @@ export async function POST({ platform, request }) {
   // console.log('request json: ', body)  // okay here
   if (platform?.env && body) {
     const res = await platform?.env?.KV.put("data", JSON.stringify(body));
-    return json({ message: "KV.put() current data" });
+    return json({ message: `saved` });
   }
   if (body) {
     return json({ message: "no platform" });

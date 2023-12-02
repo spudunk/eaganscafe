@@ -8,7 +8,8 @@
   const resetString = JSON.stringify(originalData);
 
   $: data = data;
-  $: saving = false;
+  let saving = false;
+  let saved = false;
 
   const refresh = () => {
     data = data;
@@ -24,24 +25,28 @@
         "content-type": "application/json",
       },
     });
-    console.log("data post response: \n", await res.json());
+    const j = await res.json();
+    console.log("post response: \n", j.message);
     saving = false;
+    saved = true;
+    setTimeout(() => {
+      saved = false;
+    }, 2000);
     data = data;
-    return
+    return;
   };
 
   // load original data
   const resetData = () => {
     data = JSON.parse(resetString);
     refresh();
-    return
+    return;
   };
 </script>
 
 <Header />
 
-
-<div class="container flex gap-2 mb-6">
+<div class="container flex gap-2 mb-6 items-center">
   <button
     class="py-1 px-2 border border-neutral-500 rounded"
     on:click={saveData}>SAVE</button
@@ -51,7 +56,10 @@
     on:click={resetData}>RESET</button
   >
   {#if saving}
-    <span>saving...</span>  
+    <span>saving...</span>
+  {/if}
+  {#if saved}
+    <span>saved!</span>
   {/if}
 </div>
 
