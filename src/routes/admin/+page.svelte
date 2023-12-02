@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import originalData from "$lib/data";
   import Header from "$lib/components/Header.svelte";
   import LocationDetailsForm from "./LocationDetailsForm.svelte";
@@ -9,7 +9,7 @@
 
   $: data = data;
   let saving = false;
-  let saved = false;
+  let saved: string = '';
 
   const refresh = () => {
     data = data;
@@ -18,19 +18,25 @@
   // Post current data object to server
   const saveData = async () => {
     saving = true;
-    const res = await fetch("/admin", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "content-type": "application/json",
-      },
-    });
-    const j = await res.json();
-    console.log("post response: \n", j.message);
-    saving = false;
-    saved = true;
+    try {
+      const res = await fetch("/admin", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "content-type": "application/json",
+        },
+      });
+      const j = await res.json();
+      // console.log("post response: \n", j.message);
+      saving = false;
+      saved = j.message;
+    } catch (err) {
+      saving = false;
+      console.error(err);
+      saved = 'error: ' + err;
+    }
     setTimeout(() => {
-      saved = false;
+      saved = '';
     }, 2000);
     data = data;
     return;
@@ -60,7 +66,7 @@
     <span>saving...</span>
   {/if}
   {#if saved}
-    <span>saved!</span>
+    <span>{saved}</span>
   {/if}
 </div>
 
