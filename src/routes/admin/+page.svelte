@@ -32,8 +32,8 @@
       saved = j.message;
     } catch (err) {
       saving = false;
-      console.error(err);
       saved = 'error: ' + err;
+      console.error(err);
     }
     setTimeout(() => {
       saved = '';
