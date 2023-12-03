@@ -3,13 +3,14 @@
   import Header from "$lib/components/Header.svelte";
   import LocationDetailsForm from "./LocationDetailsForm.svelte";
 
-  export let data;
+  
+  export let data: typeof originalData;
 
   const resetString = JSON.stringify(originalData);
 
   $: data = data;
   let saving = false;
-  let saved: string = '';
+  let saved: string = "";
 
   const refresh = () => {
     data = data;
@@ -26,17 +27,17 @@
           "content-type": "application/json",
         },
       });
-      const j = await res.json();
+      const j: { message: string } = await res.json();
       // console.log("post response: \n", j.message);
       saving = false;
       saved = j.message;
     } catch (err) {
       saving = false;
-      saved = 'error: ' + err;
+      saved = "error: " + err;
       console.error(err);
     }
     setTimeout(() => {
-      saved = '';
+      saved = "";
     }, 2000);
     data = data;
     return;
