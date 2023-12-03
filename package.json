@@ -1,17 +1,8 @@
 {
   "name": "etheleagans",
   "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "dev": "vite dev --host",
-    "build": "vite build",
-    "preview": "vite preview --host",
-    "check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
-    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
-    "pages:preview": "wrangler pages dev ./.svelte-kit/cloudflare --live-reload --compatibility-date=2023-12-01",
-		"pages:dev": "wrangler pages dev --proxy 5173 --compatibility-date=2023-09-04 -- vite dev --host --port 5173"
-  },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231121.0",
     "@iconify-json/ant-design": "^1.1.8",
     "@iconify-json/mdi": "^1.1.54",
     "@iconify/svelte": "^3.1.4",
@@ -23,10 +14,20 @@
     "svelte": "^4.0.5",
     "svelte-check": "^3.4.3",
     "tailwindcss": "^3.3.3",
-    "typescript": "^5.0.0",
+    "typescript": "^5.3.2",
     "unplugin-icons": "^0.16.5",
     "vite": "^4.4.2",
     "wrangler": "^3.17.1"
+  },
+  "private": true,
+  "scripts": {
+    "dev": "vite dev --host",
+    "build": "vite build",
+    "preview": "vite preview --host",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
+    "pages:preview": "wrangler pages dev ./.svelte-kit/cloudflare --live-reload --compatibility-date=2023-12-01",
+    "pages:dev": "wrangler pages dev --proxy 5173 --compatibility-date=2023-09-04 -- vite dev --host --port 5173"
   },
   "type": "module"
 }
