@@ -3,7 +3,6 @@
   import Header from "$lib/components/Header.svelte";
   import LocationDetailsForm from "./LocationDetailsForm.svelte";
 
-  
   export let data: typeof originalData;
 
   const resetString = JSON.stringify(originalData);
