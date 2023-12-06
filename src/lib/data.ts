@@ -33,8 +33,9 @@ const data = {
     showPrices: false,
   },
 
-  ethelLunchMenu: {
-    specialtyBurgers: {
+  ethelLunchMenu: [
+    {
+      id: "specialtyBurgers",
       heading: "Specialty Burgers",
       description: [
         "Make any burger a basket with a small side of fries and small soda for $3.75",
@@ -79,7 +80,8 @@ const data = {
         },
       ],
     },
-    classicBurgers: {
+    {
+      id: "classicBurgers",
       heading: "Eagans Classic Burgers",
       items: [
         {
@@ -133,7 +135,8 @@ const data = {
         },
       ],
     },
-    sandwiches: {
+    {
+      id: "sandwiches",
       heading: "Sandwiches",
       items: [
         {
@@ -160,7 +163,8 @@ const data = {
         },
       ],
     },
-    sides: {
+    {
+      id: "sides",
       heading: "Sides",
       items: [
         {
@@ -186,7 +190,8 @@ const data = {
         },
       ],
     },
-    dogs: {
+    {
+      id: "dogs",
       heading: "Hot Dogs",
       items: [
         {
@@ -213,7 +218,8 @@ const data = {
         },
       ],
     },
-    chicken: {
+    {
+      id: "chicken",
       heading: "Chicken Stuff",
       items: [
         {
@@ -235,7 +241,8 @@ const data = {
         },
       ],
     },
-    drinks: {
+    {
+      id: "drinks",
       heading: "Drinks",
       items: [
         {
@@ -270,10 +277,11 @@ const data = {
         },
       ],
     },
-  },
+  ],
 
-  ethelBreakfastMenu: {
-    classic: {
+  ethelBreakfastMenu: [
+    {
+      id: "classic",
       heading: "Classic Breakfast",
       description: [
         "Breakfast served with hashbrowns, 2 eggs, and toast or a biscuit.",
@@ -304,7 +312,8 @@ const data = {
         },
       ],
     },
-    omeletts: {
+    {
+      id: "omeletts",
       heading: "Omeletts",
       description: [],
       items: [
@@ -328,7 +337,8 @@ const data = {
         },
       ],
     },
-    sandwiches: {
+    {
+      id: "sandwiches",
       heading: "Breakfast Sandwiches",
       description: [],
       items: [
@@ -340,7 +350,8 @@ const data = {
         },
       ],
     },
-    griddle: {
+    {
+      id: "griddle",
       heading: "Off the Griddle",
       description: [],
       items: [
@@ -363,7 +374,8 @@ const data = {
         },
       ],
     },
-    bAndG: {
+    {
+      id: "bAndG",
       heading: "Classic B&G",
       description: [],
       items: [
@@ -389,7 +401,8 @@ const data = {
         },
       ],
     },
-    sides: {
+    {
+      id: "sides",
       heading: "Sides",
       items: [
         {
@@ -414,10 +427,11 @@ const data = {
         },
       ],
     },
-  },
+  ],
 
-  teninoMenu: {
-    burgers: {
+  teninoMenu: [
+    {
+      id: "burgers",
       heading: "Burgers",
       description: [
         "Make any burger into a basket!! choose your favorite burger and your side",
@@ -497,7 +511,8 @@ const data = {
         },
       ],
     },
-    sandwiches: {
+    {
+      id: "sandwiches",
       heading: "Sandwiches",
       description: ["All Sandwiches come with choice of side"],
       items: [
@@ -526,7 +541,8 @@ const data = {
         },
       ],
     },
-    sides: {
+    {
+      id: "sides",
       heading: "Sides and Sauces",
       description: [],
       items: [
@@ -564,8 +580,7 @@ const data = {
         },
       ],
     },
-  },
-
+  ],
 };
 
 export default data;

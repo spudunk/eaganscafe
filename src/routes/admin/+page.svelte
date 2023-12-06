@@ -4,10 +4,24 @@
   import LocationDetailsForm from "./LocationDetailsForm.svelte";
 
   export let data: typeof originalData;
+  let menuSelect: string;
+  let subMenuSelect: string;
 
   const resetString = JSON.stringify(originalData);
 
   $: data = data;
+  $: menu = () => {
+    switch (menuSelect) {
+      case "ethelBreakfastMenu":
+        return data.ethelBreakfastMenu
+      case "ethelLunchMenu":
+        return data.ethelLunchMenu
+      case "teninoMenu": 
+        return data.teninoMenu
+      default:
+        break;
+    }
+  }
   let saving = false;
   let saved: string = "";
 
@@ -96,5 +110,41 @@
     <LocationDetailsForm locationInfo={data.teninoInfo} on:refresh={refresh} />
   {:else}
     <div><p>No data from database</p></div>
+  {/if}
+
+  <select
+    class="bg-slate-800 m-1"
+    name="menuSelect"
+    id="menuSelect"
+    bind:value={menuSelect}
+  >
+    <option value="ethelBreakfastMenu">Ethel Breakfast</option>
+    <option value="ethelLunchMenu">Ethel Lunch</option>
+    <option value="teninoMenu">Tenino</option>
+  </select>
+
+  <p>
+    {menuSelect}
+  </p>
+  <select class="bg-slate-800 p-1" name="" id="" bind:value={subMenuSelect}>
+    {#if menuSelect === "ethelBreakfastMenu"}
+      {#each data.ethelBreakfastMenu as section}
+        <option value={section.id}> {section.heading}</option>
+      {/each}
+    {:else if menuSelect === "ethelLunchMenu"}
+      {#each data.ethelLunchMenu as section}
+        <option value={section.id}>{section.heading}</option>
+      {/each}
+    {:else if menuSelect === "teninoMenu"}
+      {#each data.teninoMenu as section}
+        <option value={section.id}>{section.heading}</option>
+      {/each}
+    {/if}
+  </select>
+  <p>{subMenuSelect}</p>
+
+  {#if subMenuSelect}
+    
+    
   {/if}
 </div>

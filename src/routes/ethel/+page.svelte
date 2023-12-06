@@ -52,7 +52,7 @@
       !(selectedTab == "lunch") ? "hidden" : ""
     } print:block print:break-after-page`}
   >
-    {#each Object.values(data.ethelLunchMenu) as section}
+    {#each data.ethelLunchMenu as section}
       <MenuSection menu={section} />
     {/each}
   </section>
@@ -64,7 +64,7 @@
       !(selectedTab == "breakfast") ? "hidden" : ""
     } print:block`}
   >
-    {#each Object.values(data.ethelBreakfastMenu) as section}
+    {#each data.ethelBreakfastMenu as section}
       <MenuSection menu={section} />
     {/each}
   </section>
