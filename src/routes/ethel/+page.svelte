@@ -40,6 +40,15 @@
   <Info info={data.ethelInfo} />
   <SizeButton />
 
+  <!-- Banner -->
+  {#if data.ethelInfo.banner}
+    <div class="flex justify-center">
+      <p class="mt-8 max-w-[70ex] text-center">
+        {data.ethelInfo.banner}
+      </p>
+    </div>
+  {/if}
+
   <!-- Tabs -->
   <div class="flex gap-2 text-xl mt-8 px-2 border-b print:hidden">
     <TabButton id="lunch">Lunch</TabButton>

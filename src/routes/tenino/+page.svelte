@@ -1,5 +1,4 @@
 <script lang="ts">
-
   // import { info } from "$lib/info";
   import MenuSection from "$lib/components/MenuSection.svelte";
   import Header from "$lib/components/Header.svelte";
@@ -23,14 +22,17 @@
 
   <SizeButton />
 
-  <section id="menu" class="grid gap-8 justify-center">
+  <!-- Banner -->
+  {#if data.teninoInfo.banner}
     <div class="flex justify-center">
       <p class="mt-8 max-w-[70ex] text-center">
-        Updated T9O menu coming soon. For prices or to place an order please
-        call.
+        {data.teninoInfo.banner}
       </p>
     </div>
+  {/if}
 
+  <!-- Menu -->
+  <section id="menu" class="grid gap-8 justify-center">
     {#each data.teninoMenu.sections as section}
       <MenuSection menu={section} />
     {/each}
