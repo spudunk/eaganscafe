@@ -25,7 +25,7 @@
   <!-- Banner -->
   {#if data.teninoInfo.banner}
     <div class="flex justify-center">
-      <p class="mt-8 max-w-[70ex] text-center">
+      <p class="my-8 max-w-[70ex] text-center">
         {data.teninoInfo.banner}
       </p>
     </div>
