@@ -1,6 +1,5 @@
 <script>
   // @ts-nocheck
-  import MenuBox from "./MenuBox.svelte";
   export let menu;
 </script>
 
