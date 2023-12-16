@@ -174,7 +174,7 @@
         />
       </label>
       {#if itemSelect.sizes}
-      <p>Sizes:</p>
+        <p>Sizes:</p>
         {#each itemSelect.sizes as size, i}
           <div class="flex gap-2">
             <input
