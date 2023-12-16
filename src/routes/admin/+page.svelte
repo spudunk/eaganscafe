@@ -12,8 +12,8 @@
   let saved: string = "";
 
   let menuSelect: Menu = data.ethelLunchMenu;
-  let sectionSelect: MenuSection = menuSelect.sections[0];
-  let itemSelect: MenuItem = sectionSelect.items[0];
+  let sectionSelect: MenuSection = menuSelect?.sections[0];
+  let itemSelect: MenuItem = sectionSelect?.items[0];
 
   // Post current data object to server
   const saveData = async () => {

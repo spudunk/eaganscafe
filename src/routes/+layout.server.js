@@ -1,4 +1,4 @@
-import originalData from "$lib/data";
+// import originalData from "$lib/data";
 
 export async function load({ fetch, platform }) {
   if (platform) {
@@ -6,6 +6,8 @@ export async function load({ fetch, platform }) {
     console.log("using data from KV store");
     return data;
   }
-  console.log("using original data from lib")
-  return originalData;
+  // console.log("using original data from lib")
+  // return originalData;
+  console.log("initializing with empty data object...")
+  return {}
 }
