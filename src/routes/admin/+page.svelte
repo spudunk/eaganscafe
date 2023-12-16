@@ -3,31 +3,17 @@
   import Header from "$lib/components/Header.svelte";
   import LocationDetailsForm from "./LocationDetailsForm.svelte";
 
-  export let data: typeof originalData;
-  let menuSelect: string;
-  let subMenuSelect: string;
+  import type { Data, Menu, MenuItem, MenuSection } from "$lib/data";
+  export let data: Data;
 
   const resetString = JSON.stringify(originalData);
 
-  $: data = data;
-  $: menu = () => {
-    switch (menuSelect) {
-      case "ethelBreakfastMenu":
-        return data.ethelBreakfastMenu
-      case "ethelLunchMenu":
-        return data.ethelLunchMenu
-      case "teninoMenu": 
-        return data.teninoMenu
-      default:
-        break;
-    }
-  }
   let saving = false;
   let saved: string = "";
 
-  const refresh = () => {
-    data = data;
-  };
+  let menuSelect: Menu = data.ethelLunchMenu;
+  let sectionSelect: MenuSection = menuSelect.sections[0];
+  let itemSelect: MenuItem = sectionSelect.items[0];
 
   // Post current data object to server
   const saveData = async () => {
@@ -59,7 +45,9 @@
   // load original data
   const resetData = () => {
     data = JSON.parse(resetString);
-    refresh();
+    menuSelect = data.ethelLunchMenu;
+    sectionSelect = menuSelect.sections[0];
+    itemSelect = sectionSelect.items[0];
     return;
   };
 </script>
@@ -84,13 +72,13 @@
   {/if}
 </div>
 
-<div class="container flex flex-col gap-6">
+<div class="container flex flex-col gap-2">
   <!-- Description Editor -->
   {#if data.description !== undefined}
     <div class="flex flex-col gap-2">
       <label for="description">Description</label>
       <textarea
-        class="w-full bg-slate-800 p-1 min-h-fit h-24"
+        class="w-full dark:bg-slate-800 bg-slate-300 p-1 min-h-fit h-24"
         name="description"
         id="description"
         bind:value={data.description}
@@ -100,51 +88,160 @@
 
   <!-- Ethel Info -->
   {#if data.ethelInfo?.details}
-    <LocationDetailsForm locationInfo={data.ethelInfo} on:refresh={refresh} />
+    <LocationDetailsForm locationInfo={data.ethelInfo} />
   {:else}
     <div><p>No data from database</p></div>
   {/if}
 
   <!-- T9O Info -->
   {#if data.teninoInfo?.details}
-    <LocationDetailsForm locationInfo={data.teninoInfo} on:refresh={refresh} />
+    <LocationDetailsForm locationInfo={data.teninoInfo} />
   {:else}
     <div><p>No data from database</p></div>
   {/if}
 
+  <!-- Menu Selector -->
+  <p class="">Select Menu:</p>
   <select
-    class="bg-slate-800 m-1"
+    class="dark:bg-slate-800 bg-slate-300 p-1"
     name="menuSelect"
     id="menuSelect"
     bind:value={menuSelect}
+    on:change={(e) => {
+      sectionSelect = menuSelect.sections[0];
+      itemSelect = sectionSelect.items[0];
+    }}
   >
-    <option value="ethelBreakfastMenu">Ethel Breakfast</option>
-    <option value="ethelLunchMenu">Ethel Lunch</option>
-    <option value="teninoMenu">Tenino</option>
+    <option value={data.ethelLunchMenu}>Ethel Lunch</option>
+    <option value={data.ethelBreakfastMenu}>Ethel Breakfast</option>
+    <option value={data.teninoMenu}>Tenino</option>
   </select>
 
-  <p>
-    {menuSelect}
-  </p>
-  <select class="bg-slate-800 p-1" name="" id="" bind:value={subMenuSelect}>
-    {#if menuSelect === "ethelBreakfastMenu"}
-      {#each data.ethelBreakfastMenu as section}
-        <option value={section.id}> {section.heading}</option>
-      {/each}
-    {:else if menuSelect === "ethelLunchMenu"}
-      {#each data.ethelLunchMenu as section}
-        <option value={section.id}>{section.heading}</option>
-      {/each}
-    {:else if menuSelect === "teninoMenu"}
-      {#each data.teninoMenu as section}
-        <option value={section.id}>{section.heading}</option>
+  <!-- Section Selector -->
+  <p class="">Select Menu Section:</p>
+  <select
+    class="dark:bg-slate-800 bg-slate-300 p-1"
+    bind:value={sectionSelect}
+    on:change={() => {
+      itemSelect = sectionSelect.items[0];
+    }}
+  >
+    {#if menuSelect}
+      {#each menuSelect.sections as section (section.id)}
+        <option value={section}> {section.heading}</option>
       {/each}
     {/if}
   </select>
-  <p>{subMenuSelect}</p>
 
-  {#if subMenuSelect}
-    
-    
-  {/if}
+  <!-- Item Selector -->
+  <p class="">Select Menu Item:</p>
+  <select class="dark:bg-slate-800 bg-slate-300 p-1" bind:value={itemSelect}>
+    {#if sectionSelect}
+      {#each sectionSelect.items as item (item.name)}
+        <option value={item}>{item.name}</option>
+      {/each}
+    {/if}
+  </select>
+
+  <!-- Item Editor -->
+  <div class="grid grid-cols-1 gap-2 w-full my-8">
+    {#if itemSelect}
+      <p class="">Edit Item</p>
+      <label class="">
+        <p>Name:</p>
+        <textarea
+          class="col-span-2 dark:bg-slate-800 bg-slate-300 p-1 w-full h-fit"
+          name="description"
+          bind:value={itemSelect.name}
+        />
+      </label>
+      <label class="">
+        <p>Description:</p>
+        <textarea
+          class="col-span-2 dark:bg-slate-800 bg-slate-300 p-1 w-full h-fit"
+          name="description"
+          bind:value={itemSelect.description}
+        />
+      </label>
+      <label>
+        <p>Price:</p>
+        $
+        <input
+          class="dark:bg-slate-800 bg-slate-300 p-1"
+          type="number"
+          name="price"
+          bind:value={itemSelect.price}
+        />
+      </label>
+      <p>Sizes:</p>
+      {#if itemSelect.sizes}
+        {#each itemSelect.sizes as size, i}
+          <div class="flex gap-2">
+            <input
+              class="dark:bg-slate-800 bg-slate-300 p-1"
+              type="text"
+              bind:value={size.size}
+            />
+            Price:
+            <input
+              class="dark:bg-slate-800 bg-slate-300 p-1"
+              type="number"
+              bind:value={size.price}
+            />
+            <button
+              on:click={(e) => {
+                itemSelect.sizes?.splice(i, 1);
+                itemSelect.sizes = itemSelect.sizes;
+              }}>X</button
+            >
+          </div>
+        {/each}
+      {/if}
+      <div>
+        <button
+          on:click={() => {
+            if (!itemSelect.sizes) {
+              itemSelect.sizes = [];
+            }
+            itemSelect.sizes = [
+              ...itemSelect.sizes,
+              { size: "New Size", price: 0 },
+            ];
+          }}
+          class="py-1 px-2 border border-neutral-500 rounded">Add Size</button
+        >
+        <button
+          on:click={() => {
+            const i = sectionSelect.items.findIndex((item) => {
+              return item === itemSelect;
+            });
+            console.log("index: " + i);
+            sectionSelect.items.splice(i, 1);
+            sectionSelect.items = sectionSelect.items;
+            itemSelect = sectionSelect.items[0];
+          }}
+          class="py-1 px-2 border border-neutral-500 rounded"
+          >Delete Item</button
+        >
+        <button
+          on:click={() => {
+            sectionSelect.items = [
+              ...sectionSelect.items,
+              {
+                name: "New Item",
+                description: "",
+                price: undefined,
+                sizes: [],
+              },
+            ];
+            sectionSelect = sectionSelect;
+            itemSelect = sectionSelect.items[sectionSelect.items.length - 1];
+          }}
+          class="py-1 px-2 border border-neutral-500 rounded"
+        >
+          New Item
+        </button>
+      </div>
+    {/if}
+  </div>
 </div>

@@ -1,8 +1,5 @@
 <script lang="ts">
-  import { createEventDispatcher } from "svelte";
   import type { LocationInfo } from "$lib/data";
-
-  const dispatch = createEventDispatcher();
 
   export let locationInfo: LocationInfo;
 </script>
@@ -11,16 +8,12 @@
   <p>Details: {locationInfo.heading}</p>
   {#each locationInfo.details as detail, index}
     <div class="flex gap-2">
-      <input
-        class="w-full bg-slate-800 p-1"
-        type="text"
-        bind:value={detail}
-      />
+      <input class="w-full dark:bg-slate-800 bg-slate-300 p-1" type="text" bind:value={detail} />
       <button
         class="p-1"
         on:click={() => {
           locationInfo.details.splice(index, 1);
-          dispatch("refresh");
+          locationInfo = locationInfo;
         }}>X</button
       >
     </div>
@@ -30,7 +23,7 @@
     class="py-1 px-4 border border-neutral-500 rounded w-fit self-center"
     on:click={() => {
       locationInfo.details.push("");
-      dispatch("refresh");
+      locationInfo = locationInfo;
     }}>Add Line</button
   >
 </div>

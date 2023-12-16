@@ -10,8 +10,9 @@
   import SEO from "$lib/components/SEO.svelte";
   import Info from "$lib/components/Info.svelte";
   import TabButton from "$lib/components/TabButton.svelte";
+  import type { Data } from "$lib/data.js";
 
-  export let data;
+  export let data: Data ;
 
   let selectedTab: string;
   tab.subscribe((value) => {
@@ -52,7 +53,7 @@
       !(selectedTab == "lunch") ? "hidden" : ""
     } print:block print:break-after-page`}
   >
-    {#each data.ethelLunchMenu as section}
+    {#each data.ethelLunchMenu.sections as section}
       <MenuSection menu={section} />
     {/each}
   </section>
@@ -64,7 +65,7 @@
       !(selectedTab == "breakfast") ? "hidden" : ""
     } print:block`}
   >
-    {#each data.ethelBreakfastMenu as section}
+    {#each data.ethelBreakfastMenu.sections as section}
       <MenuSection menu={section} />
     {/each}
   </section>
