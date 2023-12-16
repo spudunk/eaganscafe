@@ -23,10 +23,11 @@
   "scripts": {
     "dev": "vite dev --host",
     "build": "vite build",
+    "build:watch": "vite build --watch",
     "preview": "vite preview --host",
     "check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
-    "pages:preview": "wrangler pages dev ./.svelte-kit/cloudflare --live-reload --compatibility-date=2023-12-01",
+    "pages:preview": "wrangler pages dev ./.svelte-kit/cloudflare --live-reload --compatibility-date=2023-10-30",
     "pages:dev": "wrangler pages dev --proxy 5173 --compatibility-date=2023-09-04 -- vite dev --host --port 5173"
   },
   "type": "module"

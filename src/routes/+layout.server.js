@@ -1,13 +1,13 @@
-// export async function load({ fetch }) {
-// 	const res = await fetch(`/api/data`);
-// 	const data = await res.json();
-// 	// console.log("+layout.js info: ", info)
-// 	return data ;
-// }
-
-import { json } from "@sveltejs/kit";
+// import originalData from "$lib/data";
 
 export async function load({ fetch, platform }) {
-  const data = await platform?.env?.KV.get("data", { type: "json" });
-  return data;
+  if (platform) {
+    const data = await platform?.env?.KV.get("data", { type: "json" });
+    console.log("using data from KV store");
+    return data;
+  }
+  // console.log("using original data from lib")
+  // return originalData;
+  console.log("initializing with empty data object...")
+  return {}
 }

@@ -6,7 +6,8 @@
   import SizeButton from "$lib/components/SizeButton.svelte";
   import SEO from "$lib/components/SEO.svelte";
   import Info from "$lib/components/Info.svelte";
-  export let data;
+  import type { Data } from "$lib/data";
+  export let data: Data;
 </script>
 
 <SEO
@@ -30,7 +31,7 @@
       </p>
     </div>
 
-    {#each Object.values(data.teninoMenu) as section}
+    {#each data.teninoMenu.sections as section}
       <MenuSection menu={section} />
     {/each}
   </section>
