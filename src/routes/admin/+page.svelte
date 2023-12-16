@@ -104,6 +104,11 @@
     class="py-1 px-2 border border-neutral-500 rounded"
     on:click={resetData}>RESET</button
   >
+  <a
+    class="py-1 px-2 border border-neutral-500 rounded"
+    href="/admin/data.json" target="_blank">DOWNLOAD</a
+  >
+  
   {#if saving}
     <span>saving...</span>
   {/if}
