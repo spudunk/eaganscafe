@@ -173,8 +173,8 @@
           bind:value={itemSelect.price}
         />
       </label>
-      <p>Sizes:</p>
       {#if itemSelect.sizes}
+      <p>Sizes:</p>
         {#each itemSelect.sizes as size, i}
           <div class="flex gap-2">
             <input
