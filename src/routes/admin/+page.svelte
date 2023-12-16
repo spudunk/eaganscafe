@@ -50,6 +50,46 @@
     itemSelect = sectionSelect.items[0];
     return;
   };
+
+  const deleteSize = (i: number) => {
+    itemSelect.sizes?.splice(i, 1);
+    if (itemSelect.sizes?.length === 0) {
+      itemSelect.sizes = undefined;
+    } else {
+      itemSelect.sizes = itemSelect.sizes;
+    }
+  };
+
+  const addSize = () => {
+    if (!itemSelect.sizes) {
+      itemSelect.sizes = [];
+    }
+    itemSelect.sizes = [...itemSelect.sizes, { size: "New Size", price: 0 }];
+  };
+
+  const deleteItem = () => {
+    const i = sectionSelect.items.findIndex((item) => {
+      return item === itemSelect;
+    });
+    console.log("index: " + i);
+    sectionSelect.items.splice(i, 1);
+    sectionSelect.items = sectionSelect.items;
+    itemSelect = sectionSelect.items[0];
+  };
+
+  const addItem = () => {
+    sectionSelect.items = [
+      ...sectionSelect.items,
+      {
+        name: "New Item",
+        description: "",
+        price: undefined,
+        sizes: [],
+      },
+    ];
+    sectionSelect = sectionSelect;
+    itemSelect = sectionSelect.items[sectionSelect.items.length - 1];
+  };
 </script>
 
 <Header />
@@ -189,14 +229,8 @@
               bind:value={size.price}
             />
             <button
-              on:click={(e) => {
-                itemSelect.sizes?.splice(i, 1);
-                if (itemSelect.sizes?.length === 0) {
-                  itemSelect.sizes = undefined;
-                } else {
-                  itemSelect.sizes = itemSelect.sizes;
-                }
-                console.log(itemSelect.sizes);
+              on:click={() => {
+                deleteSize(i);
               }}>X</button
             >
           </div>
@@ -204,44 +238,16 @@
       {/if}
       <div>
         <button
-          on:click={() => {
-            if (!itemSelect.sizes) {
-              itemSelect.sizes = [];
-            }
-            itemSelect.sizes = [
-              ...itemSelect.sizes,
-              { size: "New Size", price: 0 },
-            ];
-          }}
+          on:click={addSize}
           class="py-1 px-2 border border-neutral-500 rounded">Add Size</button
         >
         <button
-          on:click={() => {
-            const i = sectionSelect.items.findIndex((item) => {
-              return item === itemSelect;
-            });
-            console.log("index: " + i);
-            sectionSelect.items.splice(i, 1);
-            sectionSelect.items = sectionSelect.items;
-            itemSelect = sectionSelect.items[0];
-          }}
+          on:click={deleteItem}
           class="py-1 px-2 border border-neutral-500 rounded"
           >Delete Item</button
         >
         <button
-          on:click={() => {
-            sectionSelect.items = [
-              ...sectionSelect.items,
-              {
-                name: "New Item",
-                description: "",
-                price: undefined,
-                sizes: [],
-              },
-            ];
-            sectionSelect = sectionSelect;
-            itemSelect = sectionSelect.items[sectionSelect.items.length - 1];
-          }}
+          on:click={addItem}
           class="py-1 px-2 border border-neutral-500 rounded"
         >
           New Item
