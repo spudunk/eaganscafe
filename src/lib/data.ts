@@ -599,7 +599,16 @@ const data = {
 
 export default data;
 
-export type Data = typeof data;
+export type Data = {
+  description: string;
+  title: string;
+  url: string;
+  ethelInfo: LocationInfo;
+  teninoInfo: LocationInfo;
+  ethelLunchMenu: Menu;
+  ethelBreakfastMenu: Menu;
+  teninoMenu: Menu;
+};
 
 export type LocationInfo = {
   route: string;
