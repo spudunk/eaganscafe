@@ -106,9 +106,10 @@
   >
   <a
     class="py-1 px-2 border border-neutral-500 rounded"
-    href="/admin/data.json" target="_blank">DOWNLOAD</a
+    href="/admin/data.json"
+    target="_blank">DOWNLOAD</a
   >
-  
+
   {#if saving}
     <span>saving...</span>
   {/if}
@@ -121,9 +122,9 @@
   <!-- Description Editor -->
   {#if data.description !== undefined}
     <div class="flex flex-col gap-2">
-      <label for="description">Description</label>
+      <label class="font-bold text-lg" for="description">Description</label>
       <textarea
-        class="w-full dark:bg-slate-800 bg-slate-300 p-1 min-h-fit h-24"
+        class="w-full dark:bg-neutral-800 bg-neutral-200 p-1 min-h-fit h-24"
         name="description"
         id="description"
         bind:value={data.description}
@@ -146,9 +147,10 @@
   {/if}
 
   <!-- Menu Selector -->
-  <p class="">Select Menu:</p>
+  <p class="font-bold text-lg pt-6">Menu</p>
+  <label class="" for="menuSelect">Select Menu:</label>
   <select
-    class="dark:bg-slate-800 bg-slate-300 p-1"
+    class="dark:bg-slate-800 bg-slate-200 p-1"
     name="menuSelect"
     id="menuSelect"
     bind:value={menuSelect}
@@ -162,10 +164,25 @@
     <option value={data.teninoMenu}>Tenino</option>
   </select>
 
+  {#if menuSelect}
+    <label class="">
+      <p>Title:</p>
+      <input
+        type="text"
+        class="col-span-2 dark:bg-neutral-800 bg-neutral-200 p-1 w-full h-fit"
+        name="title"
+        bind:value={menuSelect.title}
+      />
+    </label>
+  {/if}
+
+  <p class="font-bold text-lg pt-6">Section</p>
   <!-- Section Selector -->
-  <p class="">Select Menu Section:</p>
+  <label for="sectionSelect" class="">Select Menu Section:</label>
   <select
-    class="dark:bg-slate-800 bg-slate-300 p-1"
+    id="sectionSelect"
+    name="sectionSelect"
+    class="dark:bg-slate-800 bg-slate-200 p-1"
     bind:value={sectionSelect}
     on:change={() => {
       itemSelect = sectionSelect.items[0];
@@ -178,9 +195,36 @@
     {/if}
   </select>
 
+  {#if sectionSelect}
+    <label class="">
+      <p>Heading:</p>
+      <input
+        type="text"
+        class="col-span-2 dark:bg-neutral-800 bg-neutral-200 p-1 w-full h-fit"
+        name="heading"
+        bind:value={sectionSelect.heading}
+      />
+    </label>
+
+    <label class="">
+      <p>Description:</p>
+      <textarea
+        class="col-span-2 dark:bg-neutral-800 bg-neutral-200 p-1 w-full h-24 md:h-16 lg:h-12"
+        name="description"
+        bind:value={sectionSelect.description}
+      />
+    </label>
+  {/if}
+
+  <p class="font-bold text-lg mt-6">Item</p>
   <!-- Item Selector -->
-  <p class="">Select Menu Item:</p>
-  <select class="dark:bg-slate-800 bg-slate-300 p-1" bind:value={itemSelect}>
+  <label for="itemSelect" class="">Select Menu Item:</label>
+  <select
+    id="itemSelect"
+    name="itemSelect"
+    class="dark:bg-slate-800 bg-slate-200 p-1"
+    bind:value={itemSelect}
+  >
     {#if sectionSelect}
       {#each sectionSelect.items as item (item.name)}
         <option value={item}>{item.name}</option>
@@ -189,30 +233,29 @@
   </select>
 
   <!-- Item Editor -->
-  <div class="grid grid-cols-1 gap-2 w-full my-8">
+  <div class="grid grid-cols-1 gap-2 w-full mb-6">
     {#if itemSelect}
-      <p class="">Edit Item</p>
       <label class="">
         <p>Name:</p>
-        <textarea
-          class="col-span-2 dark:bg-slate-800 bg-slate-300 p-1 w-full h-fit"
-          name="description"
+        <input
+          type="text"
+          class="col-span-2 dark:bg-neutral-800 bg-neutral-200 p-1 w-full h-fit"
+          name="name"
           bind:value={itemSelect.name}
         />
       </label>
       <label class="">
         <p>Description:</p>
         <textarea
-          class="col-span-2 dark:bg-slate-800 bg-slate-300 p-1 w-full h-fit"
+          class="col-span-2 dark:bg-neutral-800 bg-neutral-200 p-1 w-full h-24 md:h-16 lg:h-12"
           name="description"
           bind:value={itemSelect.description}
         />
       </label>
       <label>
         <p>Price:</p>
-        $
         <input
-          class="dark:bg-slate-800 bg-slate-300 p-1"
+          class="dark:bg-neutral-800 bg-neutral-200 p-1"
           type="number"
           step=".01"
           name="price"
@@ -222,23 +265,30 @@
       {#if itemSelect.sizes}
         <p>Sizes:</p>
         {#each itemSelect.sizes as size, i}
-          <div class="flex gap-2">
-            <input
-              class="dark:bg-slate-800 bg-slate-300 p-1"
-              type="text"
-              bind:value={size.size}
-            />
-            Price:
-            <input
-              class="dark:bg-slate-800 bg-slate-300 p-1"
-              type="number"
-              bind:value={size.price}
-            />
-            <button
-              on:click={() => {
-                deleteSize(i);
-              }}>X</button
-            >
+          <div
+            class="flex flex-col gap-2 p-1 border border-solid border-neutral-500"
+          >
+            <div class="flex flex-wrap items-center">
+              <input
+                class="dark:bg-neutral-800 bg-neutral-200 p-1 mr-2"
+                type="text"
+                bind:value={size.size}
+              />
+              <span>
+                <input
+                  class="dark:bg-neutral-800 bg-neutral-200 p-1 mr-2"
+                  type="number"
+                  step=".01"
+                  bind:value={size.price}
+                />
+              </span>
+              <button
+                class="p-2 inline-block justify-self-end"
+                on:click={() => {
+                  deleteSize(i);
+                }}>X</button
+              >
+            </div>
           </div>
         {/each}
       {/if}
