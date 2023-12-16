@@ -191,7 +191,12 @@
             <button
               on:click={(e) => {
                 itemSelect.sizes?.splice(i, 1);
-                itemSelect.sizes = itemSelect.sizes;
+                if (itemSelect.sizes?.length === 0) {
+                  itemSelect.sizes = undefined;
+                } else {
+                  itemSelect.sizes = itemSelect.sizes;
+                }
+                console.log(itemSelect.sizes);
               }}>X</button
             >
           </div>
