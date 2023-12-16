@@ -43,7 +43,7 @@
   <!-- Banner -->
   {#if data.ethelInfo.banner}
     <div class="flex justify-center">
-      <p class="mt-8 max-w-[70ex] text-center">
+      <p class="my-8 max-w-[70ex] text-center">
         {data.ethelInfo.banner}
       </p>
     </div>
