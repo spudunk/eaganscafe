@@ -209,6 +209,7 @@
         <input
           class="dark:bg-slate-800 bg-slate-300 p-1"
           type="number"
+          step=".01"
           name="price"
           bind:value={itemSelect.price}
         />
