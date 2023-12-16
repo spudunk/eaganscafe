@@ -9,6 +9,7 @@ const data = {
     route: "/ethel",
     url: "https://eagansdiner.com/ethel",
     heading: "Ethel Eagans Diner",
+    banner: "",
     address: "1411 US-12, Ethel, WA",
     navLink: "https://goo.gl/maps/VNbK7vR7Se9qGrWD6",
     telLink: "tel:+13609785410",
@@ -23,6 +24,7 @@ const data = {
     route: "/tenino",
     url: "https://eagansdiner.com/tenino",
     heading: "Eagans T9O Diner",
+    banner: "Updated T9O menu coming soon. Please call for prices and orders.",
     address: "472 Sussex Ave, Tenino, WA",
     navLink: "https://goo.gl/maps/3Cc7i32nLEW3wANN8",
     telLink: "tel:+13602648791",
@@ -614,6 +616,7 @@ export type LocationInfo = {
   route: string;
   url: string;
   heading: string;
+  banner: string;
   address: string;
   navLink: string;
   telLink: string;
