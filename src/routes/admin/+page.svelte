@@ -122,7 +122,7 @@
   <!-- Description Editor -->
   {#if data.description !== undefined}
     <div class="flex flex-col gap-2">
-      <label class="font-bold text-lg" for="description">Description</label>
+      <label class="font-bold text-lg" for="description">Company Description</label>
       <textarea
         class="w-full dark:bg-neutral-800 bg-neutral-200 p-1 min-h-fit h-24"
         name="description"
