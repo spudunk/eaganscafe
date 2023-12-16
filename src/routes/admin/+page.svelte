@@ -84,7 +84,7 @@
         name: "New Item",
         description: "",
         price: undefined,
-        sizes: [],
+        sizes: undefined,
       },
     ];
     sectionSelect = sectionSelect;
