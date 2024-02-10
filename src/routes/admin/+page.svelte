@@ -408,7 +408,6 @@
                         <input
                           class="dark:bg-neutral-800 bg-neutral-200 p-1 mr-2"
                           type="text"
-                          placeholder="New Size"
                           bind:value={size.size}
                         />
 
