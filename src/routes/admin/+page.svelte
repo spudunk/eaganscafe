@@ -6,8 +6,14 @@
   import type { Data, Menu, MenuItem, MenuSection } from "$lib/types";
 
   export let data: Data | undefined;
-
   const resetString = JSON.stringify(originalData);
+
+  $: updatedString = (() => {
+    if (data?.updated) {
+      return new Date(data.updated);
+    }
+    return undefined;
+  })();
 
   let saving = false;
   let message: string = "";
@@ -134,8 +140,8 @@
 </div>
 
 <div class="container flex flex-col gap-2">
-  {#if data?.updated}
-    <p>Edited: {new Date(data.updated).toString()}</p>
+  {#if updatedString}
+    <p>Edited: {updatedString}</p>
   {/if}
   <!-- Description Editor -->
   {#if data?.description !== undefined}
