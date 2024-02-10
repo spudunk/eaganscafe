@@ -1,26 +1,27 @@
+import type { Data } from "./types";
+
 // place files you want to import through the `$lib` alias in this folder.
-const data = {
+export const data: Data = {
+  updated: 1707581331943,
   description:
     "Eagans are family owned diners serving burgers, fries, shakes, and more. Locations in Ethel and Tenino, WA. Call in an order today!",
   title: "Eagans Diner",
   url: "https://eagansdiner.com",
-
-  ethelInfo: <LocationInfo>{
+  ethelInfo: {
     route: "/ethel",
     url: "https://eagansdiner.com/ethel",
     heading: "Ethel Eagans Diner",
-    banner: "",
+    banner: "Now Hiring!!! Inquire Within",
     address: "1411 US-12, Ethel, WA",
     navLink: "https://goo.gl/maps/VNbK7vR7Se9qGrWD6",
     telLink: "tel:+13609785410",
     tel: "(360) 978-5410",
-    details: ["Open Every Day 8am - 7pm"],
+    details: ["Open Every Day 8am - 4pm"],
     facebookLink: "https://facebook.com/profile.php?id=61553748759189",
     facebookName: "Ethel Eagans",
     showPrices: true,
   },
-
-  teninoInfo: <LocationInfo>{
+  teninoInfo: {
     route: "/tenino",
     url: "https://eagansdiner.com/tenino",
     heading: "Eagans T9O Diner",
@@ -34,8 +35,7 @@ const data = {
     facebookName: "Loretta Eagan's T9O",
     showPrices: false,
   },
-
-  ethelLunchMenu: <Menu>{
+  ethelLunchMenu: {
     id: "ethelLunchMenu",
     title: "Ethel Lunch Menu",
     sections: [
@@ -175,22 +175,40 @@ const data = {
           {
             name: "Fries",
             sizes: [
-              { size: "Small", price: 3.39 },
-              { size: "Large", price: 4.59 },
+              {
+                size: "Small",
+                price: 3.39,
+              },
+              {
+                size: "Large",
+                price: 4.59,
+              },
             ],
           },
           {
             name: "Tots",
             sizes: [
-              { size: "Small", price: 4.29 },
-              { size: "Large", price: 7.29 },
+              {
+                size: "Small",
+                price: 4.29,
+              },
+              {
+                size: "Large",
+                price: 7.29,
+              },
             ],
           },
           {
             name: "Orings",
             sizes: [
-              { size: "Small", price: 5.09 },
-              { size: "Large", price: 7.99 },
+              {
+                size: "Small",
+                price: 5.09,
+              },
+              {
+                size: "Large",
+                price: 7.99,
+              },
             ],
           },
         ],
@@ -231,12 +249,23 @@ const data = {
           {
             name: "Nuggets",
             description: "add fries for $1.59",
-            // price: 0,
             sizes: [
-              { size: "5pc", price: 5.49 },
-              { size: "10pc", price: 7.49 },
-              { size: "15pc", price: 9.49 },
-              { size: "20pc", price: 11.49 },
+              {
+                size: "5pc",
+                price: 5.49,
+              },
+              {
+                size: "10pc",
+                price: 7.49,
+              },
+              {
+                size: "15pc",
+                price: 9.49,
+              },
+              {
+                size: "20pc",
+                price: 11.49,
+              },
             ],
           },
           {
@@ -255,38 +284,22 @@ const data = {
             name: "Soft Drinks",
             description:
               "Pepsi, orange crush, mug, Dr. pepper, Squirt, diet pepsi",
-            // price: 0,
-            // sizes: [
-            //   { size: "Small", price: 0 },
-            //   { size: "Large", price: 0 },
-            // ],
           },
           {
             name: "Bottled Drinks",
             description:
               "H20, Mountain Dew, Starbucks Pink Drink, grape soda, applejuice, orange juice, blue and red Gatorade",
-            // price: 0,
-            // sizes: [
-            //   { size: "Small", price: 0 },
-            //   { size: "Large", price: 0 },
-            // ],
           },
           {
             name: "Milkshakes",
             description:
               "chocolate, strawberry, vanilla, blackberry, blueberry, raspberry, caramel apple sucker, oreo, green apple, fresh banana, coffee, caramel, butterscotch, pineapple, peanut butter, white chocolate, havstack (white chocolate, vanilla, and marshmallow), blue raspberry, marshmellow, coconut, mint, bubblegum, rootbeer, cherry, orange, hot fudge, orange jullus, huckleberry",
-            // price: 0,
-            // sizes: [
-            //   { size: "Small", price: 0 },
-            //   { size: "Large", price: 0 },
-            // ],
           },
         ],
       },
     ],
   },
-
-  ethelBreakfastMenu: <Menu>{
+  ethelBreakfastMenu: {
     id: "ethelBreakfastMenu",
     title: "Ethel Breakfast Menu",
     sections: [
@@ -372,8 +385,14 @@ const data = {
           {
             name: "Short Stack",
             sizes: [
-              { size: "2 cakes", price: 6.48 },
-              { size: "3 cakes", price: 9.49 },
+              {
+                size: "2 cakes",
+                price: 6.48,
+              },
+              {
+                size: "3 cakes",
+                price: 9.49,
+              },
             ],
           },
           {
@@ -432,16 +451,21 @@ const data = {
             description:
               "4 slices of bacon, 4 links, 2 Patties, and 1 slice ham",
             sizes: [
-              { size: "Full order", price: 8.5 },
-              { size: "Half order", price: 4.5 },
+              {
+                size: "Full order",
+                price: 8.5,
+              },
+              {
+                size: "Half order",
+                price: 4.5,
+              },
             ],
           },
         ],
       },
     ],
   },
-
-  teninoMenu: <Menu>{
+  teninoMenu: {
     id: "teninoMenu",
     title: "T9O Menu",
     sections: [
@@ -564,22 +588,40 @@ const data = {
           {
             name: "French Fries",
             sizes: [
-              { size: "Small", price: 0 },
-              { size: "Large", price: 0 },
+              {
+                size: "Small",
+                price: 0,
+              },
+              {
+                size: "Large",
+                price: 0,
+              },
             ],
           },
           {
             name: "Tater Tots",
             sizes: [
-              { size: "Small", price: 0 },
-              { size: "Large", price: 0 },
+              {
+                size: "Small",
+                price: 0,
+              },
+              {
+                size: "Large",
+                price: 0,
+              },
             ],
           },
           {
             name: "Onion Rings",
             sizes: [
-              { size: "Small", price: 0 },
-              { size: "Large", price: 0 },
+              {
+                size: "Small",
+                price: 0,
+              },
+              {
+                size: "Large",
+                price: 0,
+              },
             ],
           },
           {
@@ -597,54 +639,6 @@ const data = {
       },
     ],
   },
-};
-
-export default data;
-
-export type Data = {
-  description: string;
-  title: string;
-  url: string;
-  ethelInfo: LocationInfo;
-  teninoInfo: LocationInfo;
-  ethelLunchMenu: Menu;
-  ethelBreakfastMenu: Menu;
-  teninoMenu: Menu;
-};
-
-export type LocationInfo = {
-  route: string;
-  url: string;
-  heading: string;
-  banner: string;
-  address: string;
-  navLink: string;
-  telLink: string;
-  tel: string;
-  details: string[];
-  facebookLink: string;
-  facebookName: string;
-  showPrices: boolean;
-};
-
-export type MenuItem = {
-  name: string;
-  description: string | undefined;
-  price: number | undefined;
-  sizes: { size: string; price: number }[] | undefined;
-};
-
-export type MenuSection = {
-  id: string;
-  heading: string;
-  description: string[];
-  items: MenuItem[];
-};
-
-export type Menu = {
-  id: string;
-  title: string;
-  sections: MenuSection[];
 };
 
 // menu template
