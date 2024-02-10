@@ -8,12 +8,12 @@
   export let data: Data | undefined;
   const resetString = JSON.stringify(originalData);
 
-  $: updatedString = (() => {
+  $: updatedString = () => {
     if (data?.updated) {
       return new Date(data.updated);
     }
     return undefined;
-  })();
+  };
 
   let saving = false;
   let message: string = "";
@@ -53,12 +53,22 @@
 
   // load original data
   const resetData = () => {
-    data = JSON.parse(resetString) as Data;
-    menuSelect = data.ethelLunchMenu;
-    message = "Reset!";
-    setTimeout(() => {
-      message = "";
-    }, 1000);
+    if (
+      confirm(
+        `Are you sure you want to reset data${
+          originalData.updated
+            ? ` back to ${new Date(originalData.updated).toLocaleDateString()}`
+            : ""
+        }?`
+      )
+    ) {
+      data = JSON.parse(resetString) as Data;
+      menuSelect = data.ethelLunchMenu;
+      message = "Reset!";
+      setTimeout(() => {
+        message = "";
+      }, 1000);
+    }
     return;
   };
 
@@ -84,7 +94,7 @@
     section.items = [
       ...section.items,
       {
-        name: "New Item",
+        name: "",
         description: "",
         price: undefined,
         sizes: undefined,
@@ -141,7 +151,7 @@
 
 <div class="container flex flex-col gap-2">
   {#if updatedString}
-    <p>Edited: {updatedString}</p>
+    <p>Edited: {updatedString()}</p>
   {/if}
   <!-- Description Editor -->
   {#if data?.description !== undefined}
@@ -245,13 +255,16 @@
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {#each section.items as item, index (item)}
             <!-- Item Editor -->
-            <div class="w-full p-2 border border-neutral-500 rounded relative">
+            <div
+              class="w-full p-2 border border-neutral-300 dark:border-neutral-700 rounded relative h-fit"
+            >
               <div class="pb-12 flex flex-col gap-2">
                 <label class="">
                   <input
                     type="text"
                     class="col-span-2 dark:bg-neutral-800 bg-neutral-200 p-1 w-full h-fit text-xl"
                     name="name"
+                    placeholder="New Item"
                     bind:value={item.name}
                   />
                 </label>
@@ -274,10 +287,8 @@
                 </label>
                 {#if item.sizes}
                   <p>Sizes:</p>
-                  {#each item.sizes as size, i}
-                    <div
-                      class="flex flex-col gap-2 p-1 border border-solid border-neutral-500 rounded"
-                    >
+                  <div class="flex flex-col gap-1 p-1">
+                    {#each item.sizes as size, i}
                       <div class="flex flex-wrap items-center">
                         <input
                           class="dark:bg-neutral-800 bg-neutral-200 p-1 mr-2"
@@ -302,33 +313,12 @@
                           }}>X</button
                         >
                       </div>
-                    </div>
-                  {/each}
+                    {/each}
+                  </div>
                 {/if}
               </div>
+
               <div class="absolute bottom-2 left-2">
-                <button
-                  class="py-1 px-2 border border-neutral-500 rounded"
-                  on:click={() => {
-                    addSize(item);
-                  }}
-                >
-                  Add Size
-                </button>
-                <button
-                  class="py-1 px-2 border border-neutral-500 rounded"
-                  on:click={() => {
-                    const choice = confirm(
-                      `Are you sure you want to delete: ${item.name}`
-                    );
-                    if (choice) {
-                      section.items.splice(index, 1);
-                      menuSelect = menuSelect;
-                    }
-                  }}
-                >
-                  Delete Item
-                </button>
                 <button
                   class="py-1 px-2 border border-neutral-500 rounded"
                   on:click={() => {
@@ -351,17 +341,43 @@
                 >
                   &downarrow;
                 </button>
+                <button
+                  class="py-1 px-6 border border-neutral-500 rounded"
+                  on:click={() => {
+                    addSize(item);
+                  }}
+                >
+                  Add Size
+                </button>
+                <button
+                  class="py-1 px-2 border border-neutral-500 rounded text-red-800 dark:text-red-200"
+                  on:click={() => {
+                    const choice = confirm(
+                      `Are you sure you want to delete: ${item.name}`
+                    );
+                    if (choice) {
+                      section.items.splice(index, 1);
+                      menuSelect = menuSelect;
+                    }
+                  }}
+                >
+                  Remove
+                </button>
               </div>
             </div>
           {/each}
-          <button
-            on:click={() => {
-              addItem(section);
-            }}
-            class="py-1 px-2 border border-neutral-500 rounded"
+          <div
+            class="w-full py-1 px-2 border border-neutral-300 dark:border-neutral-700 rounded h-fit"
           >
-            New Item
-          </button>
+            <button
+              on:click={() => {
+                addItem(section);
+              }}
+              class="py-1 px-2 mb-16 my-2 border border-neutral-500 rounded"
+            >
+              New Item
+            </button>
+          </div>
         </div>
       </div>
     {/each}
