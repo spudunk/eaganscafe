@@ -51,6 +51,18 @@
     return;
   };
 
+  const copyData = async () => {
+    try {
+      navigator.clipboard.writeText(JSON.stringify(data));
+      message = "copied!";
+    } catch (error) {
+      message = String(error);
+    }
+    setTimeout(() => {
+      message = "";
+    }, 1000);
+  };
+
   // load original data
   const resetData = () => {
     if (
@@ -86,7 +98,7 @@
     if (!item.sizes) {
       item.sizes = [];
     }
-    item.sizes = [...item.sizes, { size: "New Size", price: 0 }];
+    item.sizes = [...item.sizes, { size: "", price: 0 }];
     menuSelect = menuSelect;
   };
 
@@ -100,6 +112,24 @@
         sizes: undefined,
       },
     ];
+    menuSelect = menuSelect;
+  };
+
+  const addSection = () => {
+    const id = prompt("section id:") || "newSection";
+    if (id) {
+      menuSelect?.sections.push({
+        id: id,
+        heading: id,
+        description: [""],
+        items: [
+          {
+            name: "",
+            description: "",
+          },
+        ],
+      });
+    }
     menuSelect = menuSelect;
   };
 </script>
@@ -130,13 +160,7 @@
   </a>
   <button
     class="py-1 px-2 border border-neutral-500 rounded"
-    on:click={() => {
-      navigator.clipboard.writeText(JSON.stringify(data));
-      message = "copied!!!";
-      setTimeout(() => {
-        message = "";
-      }, 1000);
-    }}
+    on:click={copyData}
   >
     COPY
   </button>
@@ -229,10 +253,75 @@
   {/if}
 
   {#if menuSelect}
-    {#each menuSelect.sections as section (section.id)}
-      <!-- Menu Editor -->
-      <div class="mt-12 scroll-mt-12" id={section.id}>
-        <h2 class="text-xl font-bold">Section - {section.heading}</h2>
+    {#each menuSelect.sections as section, index (section.id)}
+      <!-- Section Editor -->
+      <div class="mt-12">
+        <span class="flex gap-2">
+          <h2 class="text-xl font-bold scroll-mt-12" id={section.id}>
+            Section - {section.heading}
+          </h2>
+          <button
+            class="py-1 px-2 border border-neutral-500 rounded"
+            on:click={() => {
+              let i = section;
+              if (menuSelect) {
+                i = menuSelect.sections.splice(index, 1)[0];
+                menuSelect.sections.splice(index - 1, 0, i);
+                setTimeout(
+                  (id) => {
+                    document
+                      .querySelector(`#${id}`)
+                      ?.scrollIntoView({ behavior: "smooth" });
+                  },
+                  15,
+                  section.id
+                );
+              }
+              menuSelect = menuSelect;
+            }}
+            disabled={index == 0}
+          >
+            &uparrow;
+          </button>
+          <button
+            class="py-1 px-2 border border-neutral-500 rounded"
+            on:click={() => {
+              let i = section;
+              if (menuSelect) {
+                i = menuSelect.sections.splice(index, 1)[0];
+                menuSelect.sections.splice(index + 1, 0, i);
+                setTimeout(
+                  (id) => {
+                    document
+                      .querySelector(`#${id}`)
+                      ?.scrollIntoView({ behavior: "smooth" });
+                  },
+                  15,
+                  section.id
+                );
+              }
+              menuSelect = menuSelect;
+            }}
+            disabled={index == menuSelect.sections.length - 1}
+          >
+            &downarrow;
+          </button>
+          <button
+            class="py-1 px-2 border border-neutral-500 rounded text-red-800 dark:text-red-200"
+            on:click={() => {
+              const c = confirm(
+                `Are you sure you want to DELETE section: ${section.heading}`
+              );
+              if (c) {
+                menuSelect?.sections.splice(index, 1);
+              }
+              menuSelect = menuSelect;
+            }}
+          >
+            X
+          </button>
+        </span>
+
         <label>
           Heading:
           <input
@@ -243,14 +332,40 @@
           />
         </label>
 
-        <label class="my-4">
+        <div class="my-4">
           <p>Description:</p>
-          <textarea
-            class="col-span-2 dark:bg-neutral-800 bg-neutral-200 p-1 w-full h-24 md:h-16 lg:h-12"
-            name="description"
-            bind:value={section.description}
-          />
-        </label>
+          {#if section.description}
+            {#each section.description as line, i}
+              <div class="flex gap-1">
+                <input
+                  class="col-span-2 dark:bg-neutral-800 bg-neutral-200 px-1 my-1 w-full"
+                  name="description"
+                  bind:value={line}
+                />
+                <button
+                  class="p-2 inline-block justify-self-end"
+                  on:click={() => {
+                    section.description?.splice(i, 1);
+                    menuSelect = menuSelect;
+                  }}>X</button
+                >
+              </div>
+            {/each}
+          {/if}
+          <button
+            class="my-2 px-2 py-1 border border-neutral-500 rounded"
+            on:click={() => {
+              if (section.description) {
+                section.description.push("");
+              } else {
+                section.description = [""];
+              }
+              menuSelect = menuSelect;
+            }}
+          >
+            Add line
+          </button>
+        </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {#each section.items as item, index (item)}
@@ -293,6 +408,7 @@
                         <input
                           class="dark:bg-neutral-800 bg-neutral-200 p-1 mr-2"
                           type="text"
+                          placeholder="New Size"
                           bind:value={size.size}
                         />
 
@@ -381,5 +497,13 @@
         </div>
       </div>
     {/each}
+    <div>
+      <button
+        class="px-2 py-1 mt-4 border border-neutral-500"
+        on:click={addSection}
+      >
+        Add Section
+      </button>
+    </div>
   {/if}
 </div>
