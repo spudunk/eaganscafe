@@ -19,26 +19,28 @@
   // Post current data object to server
   const saveData = async () => {
     saving = true;
-    try {
-      const res = await fetch("/admin", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "content-type": "application/json",
-        },
-      });
-      const j: { message: string } = await res.json();
-      // console.log("post response: \n", j.message);
-      saving = false;
-      message = j.message;
-    } catch (err) {
-      saving = false;
-      message = "error: " + err;
-      console.error(err);
+    if (data) {
+      try {
+        const res = await fetch("/admin", {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "content-type": "application/json",
+          },
+        });
+        const j: { message: string } = await res.json();
+        // console.log("post response: \n", j.message);
+        saving = false;
+        message = j.message;
+      } catch (err) {
+        saving = false;
+        message = "error: " + err;
+        console.error(err);
+      }
+      setTimeout(() => {
+        message = "";
+      }, 2000);
     }
-    setTimeout(() => {
-      message = "";
-    }, 2000);
     data = data;
     return;
   };
@@ -132,6 +134,9 @@
 </div>
 
 <div class="container flex flex-col gap-2">
+  {#if data?.updated}
+    <p>Edited: {new Date(data.updated).toString()}</p>
+  {/if}
   <!-- Description Editor -->
   {#if data?.description !== undefined}
     <div class="flex flex-col gap-2">
@@ -159,13 +164,15 @@
 
   {#if data}
     <!-- Menu Selector -->
-    <h2 class="font-bold text-2xl pt-12">Menu</h2>
+    <h2 class="font-bold text-2xl pt-12">Menu Editor</h2>
     <p>Select a Menu to edit:</p>
     <div class="flex gap-2">
       <button
         on:click={() => (menuSelect = data?.ethelLunchMenu)}
         class={`${
-          menuSelect === data.ethelLunchMenu ? "bg-neutral-700" : ""
+          menuSelect === data.ethelLunchMenu
+            ? "dark:bg-neutral-700 bg-neutral-300"
+            : ""
         } px-2 py-1 border border-neutral-500 rounded`}
       >
         Ethel Lunch
@@ -173,7 +180,9 @@
       <button
         on:click={() => (menuSelect = data?.ethelBreakfastMenu)}
         class={`${
-          menuSelect === data.ethelBreakfastMenu ? "bg-neutral-700" : ""
+          menuSelect === data.ethelBreakfastMenu
+            ? "dark:bg-neutral-700 bg-neutral-300"
+            : ""
         } px-2 py-1 border border-neutral-500 rounded`}
       >
         Ethel Breakfast
@@ -181,7 +190,9 @@
       <button
         on:click={() => (menuSelect = data?.teninoMenu)}
         class={`${
-          menuSelect === data.teninoMenu ? "bg-neutral-700" : ""
+          menuSelect === data.teninoMenu
+            ? "dark:bg-neutral-700 bg-neutral-300"
+            : ""
         } px-2 py-1 border border-neutral-500 rounded`}
       >
         Tenino
@@ -226,7 +237,7 @@
         </label>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {#each section.items as item, index}
+          {#each section.items as item, index (item)}
             <!-- Item Editor -->
             <div class="w-full p-2 border border-neutral-500 rounded relative">
               <div class="pb-12 flex flex-col gap-2">
@@ -291,14 +302,15 @@
               </div>
               <div class="absolute bottom-2 left-2">
                 <button
+                  class="py-1 px-2 border border-neutral-500 rounded"
                   on:click={() => {
                     addSize(item);
                   }}
-                  class="py-1 px-2 border border-neutral-500 rounded"
                 >
                   Add Size
                 </button>
                 <button
+                  class="py-1 px-2 border border-neutral-500 rounded"
                   on:click={() => {
                     const choice = confirm(
                       `Are you sure you want to delete: ${item.name}`
@@ -308,9 +320,30 @@
                       menuSelect = menuSelect;
                     }
                   }}
-                  class="py-1 px-2 border border-neutral-500 rounded"
                 >
                   Delete Item
+                </button>
+                <button
+                  class="py-1 px-2 border border-neutral-500 rounded"
+                  on:click={() => {
+                    const i = section.items.splice(index, 1)[0];
+                    section.items.splice(index - 1, 0, i);
+                    menuSelect = menuSelect;
+                  }}
+                  disabled={index == 0}
+                >
+                  &uparrow;
+                </button>
+                <button
+                  class="py-1 px-2 border border-neutral-500 rounded"
+                  on:click={() => {
+                    const i = section.items.splice(index, 1)[0];
+                    section.items.splice(index + 1, 0, i);
+                    menuSelect = menuSelect;
+                  }}
+                  disabled={index == section.items.length - 1}
+                >
+                  &downarrow;
                 </button>
               </div>
             </div>
