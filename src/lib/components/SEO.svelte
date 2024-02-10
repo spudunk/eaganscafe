@@ -1,5 +1,5 @@
 <script lang="ts">
-  import data from "$lib/data";
+  import {data} from "$lib/data";
   export let description = data.description; // prop but use lib/info as default
   export let title = data.title;
   export let url = data.url;

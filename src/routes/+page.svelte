@@ -5,8 +5,9 @@
   // import { info } from "$lib/info";
   import { preloadData } from "$app/navigation";
   import { onMount } from "svelte";
+  import type { Data } from "$lib/types";
 
-  export let data;
+  export let data: Data;
   // console.log("+page.svelte data: ", data);
 
 

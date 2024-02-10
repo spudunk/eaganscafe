@@ -5,7 +5,7 @@
   import SizeButton from "$lib/components/SizeButton.svelte";
   import SEO from "$lib/components/SEO.svelte";
   import Info from "$lib/components/Info.svelte";
-  import type { Data } from "$lib/data";
+  import type { Data } from "$lib/types";
   export let data: Data;
 </script>
 
