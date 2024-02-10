@@ -6,7 +6,7 @@
 
   let selectedTab: string;
 
-  tab.subscribe((value) => {
+  tab.subscribe((value: string) => {
     selectedTab = value;
   });
 </script>
