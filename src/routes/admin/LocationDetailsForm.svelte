@@ -3,7 +3,7 @@
   export let locationInfo: LocationInfo;
 </script>
 
-<div class="p-2 pb-14 border border-neutral-500 rounded relative">
+<div class="p-2 pb-4 border border-neutral-300 dark:border-neutral-700 rounded relative">
   <h2 class="font-bold text-lg">{locationInfo.heading}</h2>
   <div class="flex flex-col gap-2 mt-4">
     <label for="banner">Page Banner:</label>
@@ -34,14 +34,16 @@
         </button>
       </div>
     {/each}
-  </div>
-  <div class="absolute bottom-2 left-2 right-2">
-    <button
-      class="py-1 px-4 border border-neutral-500 rounded w-fit"
-      on:click={() => {
-        locationInfo.details.push("");
-        locationInfo = locationInfo;
-      }}>Add Line</button
-    >
+    <div class="flex gap-2">
+      <button
+        class="py-1 px-4 border border-neutral-500 rounded w-fit"
+        on:click={() => {
+          locationInfo.details.push("");
+          locationInfo = locationInfo;
+        }}
+      >
+        New Line
+      </button>
+    </div>
   </div>
 </div>
