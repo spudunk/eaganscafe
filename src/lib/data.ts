@@ -2,7 +2,7 @@ import type { Data } from "./types";
 
 // place files you want to import through the `$lib` alias in this folder.
 export const data: Data = {
-  updated: 1707605479543,
+  updated: 1707608616373,
   description:
     "Eagans are family owned diners serving burgers, fries, shakes, and more. Locations in Ethel and Tenino, WA. Call in an order today!",
   title: "Eagans Diner",
@@ -117,14 +117,12 @@ export const data: Data = {
             ],
           },
         ],
+        description: ["add small fries and a soda for $3.75"],
       },
       {
         id: "specialtyBurgers",
         heading: "Specialty Burgers",
-        description: [
-          "Make any burger a basket with a small side of fries and small soda for $3.75",
-          "*onions on request*",
-        ],
+        description: ["add small fries and a soda for $3.75"],
         items: [
           {
             name: "A1 Steak",
