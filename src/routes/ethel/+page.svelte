@@ -57,7 +57,7 @@
 
   {#if date}
   <div class="flex justify-center">
-    <p class="mt-2 mb-8 max-w-[70ex] text-center text-xs">
+    <p class="mt-2 mb-8 max-w-[70ex] text-center text-xs text-neutral-400">
       Updated {date.toLocaleDateString()}
     </p>
   </div>
