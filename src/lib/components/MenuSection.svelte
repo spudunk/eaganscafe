@@ -22,7 +22,7 @@
           <div class="flex justify-between">
             <h3 class="font-semibold dark:font-semibold uppercase">{item.name}</h3>
             {#if item.price}
-              <span class="mr-8"> ${item.price.toFixed(2)} </span>
+              <span class="mr-8 pl-4"> ${item.price.toFixed(2)} </span>
             {/if}
           </div>
           {#if item.description}
