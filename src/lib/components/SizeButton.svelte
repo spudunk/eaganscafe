@@ -1,28 +1,40 @@
-<script>
+<script lang="ts">
   import { onMount } from "svelte";
 
-  let toggleFontSize = () => {};
-  let larger = false;
+  let fontSize = (a: number) => {};
+  let size = 1;
+  const bounds = {
+    upper: 1.8,
+    lower: 0.6,
+  };
 
   onMount(() => {
     const root = document.documentElement;
-    toggleFontSize = () => {
-      if (larger) {
-        larger = false;
-        root.style.fontSize = "";
-      } else {
-        larger = true;
-        root.style.fontSize = "1.25rem";
+    root.style.fontSize = "";
+    fontSize = (a) => {
+      let newSize = size + a;
+      if (newSize > bounds.lower && newSize < bounds.upper) {
+        size = newSize;
+        root.style.fontSize = size + "rem";
       }
     };
   });
 </script>
 
-<div class="w-full flex justify-center print:hidden">
+<div class="w-full flex gap-2 mt-4 justify-center print:hidden md:hidden items-center ">
   <button
-    on:click={toggleFontSize}
-    class="border border-neutral-400 py-1 px-2 mt-4 rounded  md:hidden"
-    >MAKE {larger ? "SMALLER" : "LARGER"}</button
+    on:click={() => fontSize(-0.2)}
+    class="border border-neutral-400 px-2 rounded"
+    disabled={size <= bounds.lower}
   >
+    &minus;
+  </button>
+  SIZE
+  <button
+    on:click={() => fontSize(0.2)}
+    class="border border-neutral-400 px-2 rounded"
+    disabled={size >= bounds.upper}
+  >
+    &plus;
+  </button>
 </div>
-
