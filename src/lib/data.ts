@@ -2,7 +2,7 @@ import type { Data } from "./types";
 
 // place files you want to import through the `$lib` alias in this folder.
 export const data: Data = {
-  updated: 1707608735056,
+  updated: 1707610354889,
   description:
     "Eagans are family owned diners serving burgers, fries, shakes, and more. Locations in Ethel and Tenino, WA. Call in an order today!",
   title: "Eagans Diner",
@@ -227,7 +227,7 @@ export const data: Data = {
             name: "Downtown",
             description:
               "Grilled turkey, bacon, swiss cheese, avocodo, and tomatoes served on grilled sourdough or pub roll",
-            price: 11.19,
+            price: 11.99,
           },
           {
             name: "Tuna",
@@ -462,7 +462,7 @@ export const data: Data = {
           {
             name: "222",
             description: "2 cakes, with 2 eggs and 2 links, 2 bacon OR 1 patty",
-            price: 11.49,
+            price: 12.49,
           },
           { name: "French Toast", description: "2 slices", price: 6.49 },
         ],
@@ -482,11 +482,11 @@ export const data: Data = {
             name: "Full Biscuit and Gravy",
             description:
               "Two and a half biscuits smothered in our homemade country gravy",
-            price: 8.89,
+            price: 9.89,
           },
           {
             name: "Hashbrows Biscuit and Gravy",
-            price: 10.89,
+            price: 14.39,
             description:
               "Hashbrowns cooked golden with a buttermilk biscuit topped with gravy",
           },
