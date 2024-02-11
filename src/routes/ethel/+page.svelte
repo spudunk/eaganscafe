@@ -14,6 +14,12 @@
 
   export let data: Data ;
 
+  let date: Date;
+
+  if (data.updated){
+    date = new Date(data.updated);
+  }
+
   let selectedTab: string;
   tab.subscribe((value: string) => {
     selectedTab = value;
@@ -43,10 +49,18 @@
   <!-- Banner -->
   {#if data.ethelInfo.banner}
     <div class="flex justify-center print:hidden">
-      <p class="my-8 max-w-[70ex] text-center">
+      <p class="mt-8 max-w-[70ex] text-center">
         {data.ethelInfo.banner}
       </p>
     </div>
+  {/if}
+
+  {#if date}
+  <div class="flex justify-center">
+    <p class="mt-2 mb-8 max-w-[70ex] text-center text-xs">
+      Updated {date.toLocaleDateString()}
+    </p>
+  </div>
   {/if}
 
   <!-- Tabs -->
