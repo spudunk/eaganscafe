@@ -26,7 +26,7 @@
       </a>
     {:else}
       <!-- location page Heading -->
-      <h1 class="px-2 py-1 text-2xl font-bold">{info.heading}</h1>
+      <h1 class="px-2 py-1 text-3xl font-bold font-display">{info.heading}</h1>
     {/if}
 
     <a

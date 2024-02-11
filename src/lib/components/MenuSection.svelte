@@ -4,7 +4,7 @@
 </script>
 
 <div class="break-inside-avoid lg:mt-6 print:mt-6">
-  <h2 class="text-2xl font-bold dark:font-medium">{menu.heading}</h2>
+  <h2 class="text-3xl font-bold dark:font-medium font-display">{menu.heading}</h2>
   {#if menu.description}
     {#each menu.description as p}
       <p class="mt-2">{p}</p>
@@ -20,7 +20,7 @@
       >
         <div class="p-2">
           <div class="flex justify-between">
-            <h3 class="font-bold dark:font-semibold">{item.name}</h3>
+            <h3 class="font-semibold dark:font-semibold uppercase">{item.name}</h3>
             {#if item.price}
               <span class="mr-8"> ${item.price.toFixed(2)} </span>
             {/if}

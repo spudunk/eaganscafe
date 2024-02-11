@@ -6,7 +6,11 @@ export default {
       center: true,
       padding: '0.5rem',
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        display: ["Shadows Into Light", "sans-serif"]
+      }
+    },
   },
   plugins: [],
 }

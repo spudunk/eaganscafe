@@ -21,7 +21,7 @@
 <Header />
 
 <main class="container text-center flex flex-col items-center gap-4">
-  <h1 class="text-3xl">Eagans Diners</h1>
+  <h1 class="text-4xl font-display">Eagans Diners</h1>
 
   <p class="max-w-[70ex]">
     {#if data.description}
