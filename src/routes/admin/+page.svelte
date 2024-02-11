@@ -1,128 +1,186 @@
 <script lang="ts">
-  import originalData from "$lib/data";
+  import { data as originalData } from "$lib/data";
   import Header from "$lib/components/Header.svelte";
   import LocationDetailsForm from "./LocationDetailsForm.svelte";
 
-  import type { Data, Menu, MenuItem, MenuSection } from "$lib/data";
-  export let data: Data;
+  import type { Data, Menu, MenuItem, MenuSection } from "$lib/types";
 
+  export let data: Data | undefined;
   const resetString = JSON.stringify(originalData);
 
-  let saving = false;
-  let saved: string = "";
+  $: updatedString = () => {
+    if (data?.updated) {
+      return new Date(data.updated);
+    }
+    return undefined;
+  };
 
-  let menuSelect: Menu = data.ethelLunchMenu;
-  let sectionSelect: MenuSection = menuSelect?.sections[0];
-  let itemSelect: MenuItem = sectionSelect?.items[0];
+  let saving = false;
+  let message: string = "";
+  let menuSelect: Menu | undefined;
+  if (data) {
+    menuSelect = data.ethelLunchMenu;
+  }
 
   // Post current data object to server
   const saveData = async () => {
     saving = true;
-    try {
-      const res = await fetch("/admin", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "content-type": "application/json",
-        },
-      });
-      const j: { message: string } = await res.json();
-      // console.log("post response: \n", j.message);
-      saving = false;
-      saved = j.message;
-    } catch (err) {
-      saving = false;
-      saved = "error: " + err;
-      console.error(err);
+    if (data) {
+      try {
+        const res = await fetch("/admin", {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "content-type": "application/json",
+          },
+        });
+        const j: { message: string } = await res.json();
+        // console.log("post response: \n", j.message);
+        saving = false;
+        message = j.message;
+      } catch (err) {
+        saving = false;
+        message = "error: " + err;
+        console.error(err);
+      }
+      setTimeout(() => {
+        message = "";
+      }, 2000);
     }
-    setTimeout(() => {
-      saved = "";
-    }, 2000);
     data = data;
     return;
   };
 
+  const copyData = async () => {
+    try {
+      navigator.clipboard.writeText(JSON.stringify(data));
+      message = "copied!";
+    } catch (error) {
+      message = String(error);
+    }
+    setTimeout(() => {
+      message = "";
+    }, 1000);
+  };
+
   // load original data
   const resetData = () => {
-    data = JSON.parse(resetString);
-    menuSelect = data.ethelLunchMenu;
-    sectionSelect = menuSelect.sections[0];
-    itemSelect = sectionSelect.items[0];
+    if (
+      confirm(
+        `Are you sure you want to reset data${
+          originalData.updated
+            ? ` back to ${new Date(originalData.updated).toLocaleDateString()}`
+            : ""
+        }?`
+      )
+    ) {
+      data = JSON.parse(resetString) as Data;
+      menuSelect = data.ethelLunchMenu;
+      message = "Reset!";
+      setTimeout(() => {
+        message = "";
+      }, 1000);
+    }
     return;
   };
 
-  const deleteSize = (i: number) => {
-    itemSelect.sizes?.splice(i, 1);
-    if (itemSelect.sizes?.length === 0) {
-      itemSelect.sizes = undefined;
+  const deleteSize = (item: MenuItem, i: number) => {
+    item.sizes?.splice(i, 1);
+    if (item.sizes?.length === 0) {
+      item.sizes = undefined;
     } else {
-      itemSelect.sizes = itemSelect.sizes;
+      item.sizes = item.sizes;
     }
+    menuSelect = menuSelect;
   };
 
-  const addSize = () => {
-    if (!itemSelect.sizes) {
-      itemSelect.sizes = [];
+  const addSize = (item: MenuItem) => {
+    if (!item.sizes) {
+      item.sizes = [];
     }
-    itemSelect.sizes = [...itemSelect.sizes, { size: "New Size", price: 0 }];
+    item.sizes = [...item.sizes, { size: "", price: 0 }];
+    menuSelect = menuSelect;
   };
 
-  const deleteItem = () => {
-    const i = sectionSelect.items.findIndex((item) => {
-      return item === itemSelect;
-    });
-    console.log("index: " + i);
-    sectionSelect.items.splice(i, 1);
-    sectionSelect.items = sectionSelect.items;
-    itemSelect = sectionSelect.items[0];
-  };
-
-  const addItem = () => {
-    sectionSelect.items = [
-      ...sectionSelect.items,
+  const addItem = (section: MenuSection) => {
+    section.items = [
+      ...section.items,
       {
-        name: "New Item",
+        name: "",
         description: "",
         price: undefined,
         sizes: undefined,
       },
     ];
-    sectionSelect = sectionSelect;
-    itemSelect = sectionSelect.items[sectionSelect.items.length - 1];
+    menuSelect = menuSelect;
+  };
+
+  const addSection = () => {
+    const id = prompt("section id:") || "newSection";
+    if (id) {
+      menuSelect?.sections.push({
+        id: id,
+        heading: id,
+        description: [""],
+        items: [
+          {
+            name: "",
+            description: "",
+          },
+        ],
+      });
+    }
+    menuSelect = menuSelect;
   };
 </script>
 
-<Header />
+<Header reload={true} />
 
 <div class="container flex gap-2 mb-6 items-center">
   <button
     class="py-1 px-2 border border-neutral-500 rounded"
     disabled={saving}
-    on:click={saveData}>SAVE</button
+    on:click={saveData}
   >
+    SAVE
+  </button>
   <button
     class="py-1 px-2 border border-neutral-500 rounded"
-    on:click={resetData}>RESET</button
+    on:click={resetData}
+    disabled={message.length > 0}
   >
+    RESET
+  </button>
   <a
     class="py-1 px-2 border border-neutral-500 rounded"
     href="/admin/data.json"
-    target="_blank">DOWNLOAD</a
+    target="_blank"
   >
+    DOWNLOAD
+  </a>
+  <button
+    class="py-1 px-2 border border-neutral-500 rounded"
+    on:click={copyData}
+  >
+    COPY
+  </button>
 
   {#if saving}
     <span>saving...</span>
   {/if}
-  {#if saved}
-    <span>{saved}</span>
+  {#if message}
+    <span>{message}</span>
   {/if}
 </div>
 
 <div class="container flex flex-col gap-2">
+  {#if updatedString}
+    <p>Edited: {updatedString()}</p>
+  {/if}
   <!-- Description Editor -->
-  {#if data.description !== undefined}
+  {#if data?.description !== undefined}
     <div class="flex flex-col gap-2">
-      <label class="font-bold text-lg" for="description">Company Description</label>
+      <label class="font-bold" for="description"> General Description </label>
       <textarea
         class="w-full dark:bg-neutral-800 bg-neutral-200 p-1 min-h-fit h-24"
         name="description"
@@ -132,41 +190,59 @@
     </div>
   {/if}
 
-  <!-- Ethel Info -->
-  {#if data.ethelInfo?.details}
-    <LocationDetailsForm locationInfo={data.ethelInfo} />
-  {:else}
-    <div><p>No data from database</p></div>
-  {/if}
+  <div class="grid gap-4 md:grid-cols-2">
+    <!-- Ethel Info -->
+    {#if data?.ethelInfo}
+      <LocationDetailsForm locationInfo={data.ethelInfo} />
+    {/if}
 
-  <!-- T9O Info -->
-  {#if data.teninoInfo?.details}
-    <LocationDetailsForm locationInfo={data.teninoInfo} />
-  {:else}
-    <div><p>No data from database</p></div>
-  {/if}
+    <!-- T9O Info -->
+    {#if data?.teninoInfo}
+      <LocationDetailsForm locationInfo={data.teninoInfo} />
+    {/if}
+  </div>
 
-  <!-- Menu Selector -->
-  <p class="font-bold text-lg pt-6">Menu</p>
-  <label class="" for="menuSelect">Select Menu:</label>
-  <select
-    class="dark:bg-slate-800 bg-slate-200 p-1"
-    name="menuSelect"
-    id="menuSelect"
-    bind:value={menuSelect}
-    on:change={(e) => {
-      sectionSelect = menuSelect.sections[0];
-      itemSelect = sectionSelect.items[0];
-    }}
-  >
-    <option value={data.ethelLunchMenu}>Ethel Lunch</option>
-    <option value={data.ethelBreakfastMenu}>Ethel Breakfast</option>
-    <option value={data.teninoMenu}>Tenino</option>
-  </select>
+  {#if data}
+    <!-- Menu Selector -->
+    <h2 class="font-bold text-2xl pt-12">Menu Editor</h2>
+    <p>Select a Menu to edit:</p>
+    <div class="flex gap-2">
+      <button
+        on:click={() => (menuSelect = data?.ethelLunchMenu)}
+        class={`${
+          menuSelect === data.ethelLunchMenu
+            ? "dark:bg-neutral-700 bg-neutral-300"
+            : ""
+        } px-2 py-1 border border-neutral-500 rounded`}
+      >
+        Ethel Lunch
+      </button>
+      <button
+        on:click={() => (menuSelect = data?.ethelBreakfastMenu)}
+        class={`${
+          menuSelect === data.ethelBreakfastMenu
+            ? "dark:bg-neutral-700 bg-neutral-300"
+            : ""
+        } px-2 py-1 border border-neutral-500 rounded`}
+      >
+        Ethel Breakfast
+      </button>
+      <button
+        on:click={() => (menuSelect = data?.teninoMenu)}
+        class={`${
+          menuSelect === data.teninoMenu
+            ? "dark:bg-neutral-700 bg-neutral-300"
+            : ""
+        } px-2 py-1 border border-neutral-500 rounded`}
+      >
+        Tenino
+      </button>
+    </div>
+  {/if}
 
   {#if menuSelect}
-    <label class="">
-      <p>Title:</p>
+    <label class="mt-2">
+      <div class="">Menu Title:</div>
       <input
         type="text"
         class="col-span-2 dark:bg-neutral-800 bg-neutral-200 p-1 w-full h-fit"
@@ -176,139 +252,257 @@
     </label>
   {/if}
 
-  <p class="font-bold text-lg pt-6">Section</p>
-  <!-- Section Selector -->
-  <label for="sectionSelect" class="">Select Menu Section:</label>
-  <select
-    id="sectionSelect"
-    name="sectionSelect"
-    class="dark:bg-slate-800 bg-slate-200 p-1"
-    bind:value={sectionSelect}
-    on:change={() => {
-      itemSelect = sectionSelect.items[0];
-    }}
-  >
-    {#if menuSelect}
-      {#each menuSelect.sections as section (section.id)}
-        <option value={section}> {section.heading}</option>
-      {/each}
-    {/if}
-  </select>
-
-  {#if sectionSelect}
-    <label class="">
-      <p>Heading:</p>
-      <input
-        type="text"
-        class="col-span-2 dark:bg-neutral-800 bg-neutral-200 p-1 w-full h-fit"
-        name="heading"
-        bind:value={sectionSelect.heading}
-      />
-    </label>
-
-    <label class="">
-      <p>Description:</p>
-      <textarea
-        class="col-span-2 dark:bg-neutral-800 bg-neutral-200 p-1 w-full h-24 md:h-16 lg:h-12"
-        name="description"
-        bind:value={sectionSelect.description}
-      />
-    </label>
-  {/if}
-
-  <p class="font-bold text-lg mt-6">Item</p>
-  <!-- Item Selector -->
-  <label for="itemSelect" class="">Select Menu Item:</label>
-  <select
-    id="itemSelect"
-    name="itemSelect"
-    class="dark:bg-slate-800 bg-slate-200 p-1"
-    bind:value={itemSelect}
-  >
-    {#if sectionSelect}
-      {#each sectionSelect.items as item (item.name)}
-        <option value={item}>{item.name}</option>
-      {/each}
-    {/if}
-  </select>
-
-  <!-- Item Editor -->
-  <div class="grid grid-cols-1 gap-2 w-full mb-6">
-    {#if itemSelect}
-      <label class="">
-        <p>Name:</p>
-        <input
-          type="text"
-          class="col-span-2 dark:bg-neutral-800 bg-neutral-200 p-1 w-full h-fit"
-          name="name"
-          bind:value={itemSelect.name}
-        />
-      </label>
-      <label class="">
-        <p>Description:</p>
-        <textarea
-          class="col-span-2 dark:bg-neutral-800 bg-neutral-200 p-1 w-full h-24 md:h-16 lg:h-12"
-          name="description"
-          bind:value={itemSelect.description}
-        />
-      </label>
-      <label>
-        <p>Price:</p>
-        <input
-          class="dark:bg-neutral-800 bg-neutral-200 p-1"
-          type="number"
-          step=".01"
-          name="price"
-          bind:value={itemSelect.price}
-        />
-      </label>
-      {#if itemSelect.sizes}
-        <p>Sizes:</p>
-        {#each itemSelect.sizes as size, i}
-          <div
-            class="flex flex-col gap-2 p-1 border border-solid border-neutral-500"
+  {#if menuSelect}
+    {#each menuSelect.sections as section, index (section.id)}
+      <!-- Section Editor -->
+      <div class="mt-12">
+        <span class="flex gap-2">
+          <h2 class="text-xl font-bold scroll-mt-12" id={section.id}>
+            Section - {section.heading}
+          </h2>
+          <button
+            class="py-1 px-2 border border-neutral-500 rounded"
+            on:click={() => {
+              let i = section;
+              if (menuSelect) {
+                i = menuSelect.sections.splice(index, 1)[0];
+                menuSelect.sections.splice(index - 1, 0, i);
+                setTimeout(
+                  (id) => {
+                    document
+                      .querySelector(`#${id}`)
+                      ?.scrollIntoView({ behavior: "smooth" });
+                  },
+                  15,
+                  section.id
+                );
+              }
+              menuSelect = menuSelect;
+            }}
+            disabled={index == 0}
           >
-            <div class="flex flex-wrap items-center">
-              <input
-                class="dark:bg-neutral-800 bg-neutral-200 p-1 mr-2"
-                type="text"
-                bind:value={size.size}
-              />
-              <span>
+            &uparrow;
+          </button>
+          <button
+            class="py-1 px-2 border border-neutral-500 rounded"
+            on:click={() => {
+              let i = section;
+              if (menuSelect) {
+                i = menuSelect.sections.splice(index, 1)[0];
+                menuSelect.sections.splice(index + 1, 0, i);
+                setTimeout(
+                  (id) => {
+                    document
+                      .querySelector(`#${id}`)
+                      ?.scrollIntoView({ behavior: "smooth" });
+                  },
+                  15,
+                  section.id
+                );
+              }
+              menuSelect = menuSelect;
+            }}
+            disabled={index == menuSelect.sections.length - 1}
+          >
+            &downarrow;
+          </button>
+          <button
+            class="py-1 px-2 border border-neutral-500 rounded text-red-800 dark:text-red-200"
+            on:click={() => {
+              const c = confirm(
+                `Are you sure you want to DELETE section: ${section.heading}`
+              );
+              if (c) {
+                menuSelect?.sections.splice(index, 1);
+              }
+              menuSelect = menuSelect;
+            }}
+          >
+            X
+          </button>
+        </span>
+
+        <label>
+          Heading:
+          <input
+            type="text"
+            class="col-span-2 dark:bg-neutral-800 bg-neutral-200 p-1 w-full h-fit"
+            name="heading"
+            bind:value={section.heading}
+          />
+        </label>
+
+        <div class="my-4">
+          <p>Description:</p>
+          {#if section.description}
+            {#each section.description as line, i}
+              <div class="flex gap-1">
                 <input
-                  class="dark:bg-neutral-800 bg-neutral-200 p-1 mr-2"
-                  type="number"
-                  step=".01"
-                  bind:value={size.price}
+                  class="col-span-2 dark:bg-neutral-800 bg-neutral-200 px-1 my-1 w-full"
+                  name="description"
+                  bind:value={line}
                 />
-              </span>
-              <button
-                class="p-2 inline-block justify-self-end"
-                on:click={() => {
-                  deleteSize(i);
-                }}>X</button
-              >
+                <button
+                  class="p-2 inline-block justify-self-end"
+                  on:click={() => {
+                    section.description?.splice(i, 1);
+                    menuSelect = menuSelect;
+                  }}>X</button
+                >
+              </div>
+            {/each}
+          {/if}
+          <button
+            class="my-2 px-2 py-1 border border-neutral-500 rounded"
+            on:click={() => {
+              if (section.description) {
+                section.description.push("");
+              } else {
+                section.description = [""];
+              }
+              menuSelect = menuSelect;
+            }}
+          >
+            Add line
+          </button>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {#each section.items as item, index (item)}
+            <!-- Item Editor -->
+            <div
+              class="w-full p-2 border border-neutral-300 dark:border-neutral-700 rounded relative h-fit"
+            >
+              <div class="pb-12 flex flex-col gap-2">
+                <label class="">
+                  <input
+                    type="text"
+                    class="col-span-2 dark:bg-neutral-800 bg-neutral-200 p-1 w-full h-fit text-xl"
+                    name="name"
+                    placeholder="New Item"
+                    bind:value={item.name}
+                  />
+                </label>
+                <label class="flex items-center gap-2">
+                  <p>$</p>
+                  <input
+                    class="dark:bg-neutral-800 bg-neutral-200 p-1"
+                    type="number"
+                    step=".01"
+                    name="price"
+                    bind:value={item.price}
+                  />
+                </label>
+                <label class="">
+                  <textarea
+                    class="col-span-2 dark:bg-neutral-800 bg-neutral-200 p-1 w-full h-24"
+                    name="description"
+                    bind:value={item.description}
+                  />
+                </label>
+                {#if item.sizes}
+                  <p>Sizes:</p>
+                  <div class="flex flex-col gap-1 p-1">
+                    {#each item.sizes as size, i}
+                      <div class="flex flex-wrap items-center">
+                        <input
+                          class="dark:bg-neutral-800 bg-neutral-200 p-1 mr-2"
+                          type="text"
+                          bind:value={size.size}
+                        />
+
+                        <label>
+                          $
+                          <input
+                            class="dark:bg-neutral-800 bg-neutral-200 p-1 mr-2 w-20"
+                            type="number"
+                            step=".01"
+                            bind:value={size.price}
+                          />
+                        </label>
+
+                        <button
+                          class="p-2 inline-block justify-self-end"
+                          on:click={() => {
+                            deleteSize(item, i);
+                          }}>X</button
+                        >
+                      </div>
+                    {/each}
+                  </div>
+                {/if}
+              </div>
+
+              <div class="absolute bottom-2 left-2">
+                <button
+                  class="py-1 px-2 border border-neutral-500 rounded"
+                  on:click={() => {
+                    const i = section.items.splice(index, 1)[0];
+                    section.items.splice(index - 1, 0, i);
+                    menuSelect = menuSelect;
+                  }}
+                  disabled={index == 0}
+                >
+                  &uparrow;
+                </button>
+                <button
+                  class="py-1 px-2 border border-neutral-500 rounded"
+                  on:click={() => {
+                    const i = section.items.splice(index, 1)[0];
+                    section.items.splice(index + 1, 0, i);
+                    menuSelect = menuSelect;
+                  }}
+                  disabled={index == section.items.length - 1}
+                >
+                  &downarrow;
+                </button>
+                <button
+                  class="py-1 px-6 border border-neutral-500 rounded"
+                  on:click={() => {
+                    addSize(item);
+                  }}
+                >
+                  Add Size
+                </button>
+                <button
+                  class="py-1 px-2 border border-neutral-500 rounded text-red-800 dark:text-red-200"
+                  on:click={() => {
+                    const choice = confirm(
+                      `Are you sure you want to delete: ${item.name}`
+                    );
+                    if (choice) {
+                      section.items.splice(index, 1);
+                      menuSelect = menuSelect;
+                    }
+                  }}
+                >
+                  Remove
+                </button>
+              </div>
             </div>
+          {/each}
+          <div
+            class="w-full py-1 px-2 border border-neutral-300 dark:border-neutral-700 rounded h-fit"
+          >
+            <button
+              on:click={() => {
+                addItem(section);
+              }}
+              class="py-1 px-2 mb-16 my-2 border border-neutral-500 rounded"
+            >
+              New Item
+            </button>
           </div>
-        {/each}
-      {/if}
-      <div>
-        <button
-          on:click={addSize}
-          class="py-1 px-2 border border-neutral-500 rounded">Add Size</button
-        >
-        <button
-          on:click={deleteItem}
-          class="py-1 px-2 border border-neutral-500 rounded"
-          >Delete Item</button
-        >
-        <button
-          on:click={addItem}
-          class="py-1 px-2 border border-neutral-500 rounded"
-        >
-          New Item
-        </button>
+        </div>
       </div>
-    {/if}
-  </div>
+    {/each}
+    <div>
+      <button
+        class="px-2 py-1 mt-4 border border-neutral-500"
+        on:click={addSection}
+      >
+        Add Section
+      </button>
+    </div>
+  {/if}
 </div>

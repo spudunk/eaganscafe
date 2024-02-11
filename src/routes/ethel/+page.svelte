@@ -10,12 +10,12 @@
   import SEO from "$lib/components/SEO.svelte";
   import Info from "$lib/components/Info.svelte";
   import TabButton from "$lib/components/TabButton.svelte";
-  import type { Data } from "$lib/data.js";
+  import type { Data } from "$lib/types";
 
   export let data: Data ;
 
   let selectedTab: string;
-  tab.subscribe((value) => {
+  tab.subscribe((value: string) => {
     selectedTab = value;
   });
 
@@ -42,7 +42,7 @@
 
   <!-- Banner -->
   {#if data.ethelInfo.banner}
-    <div class="flex justify-center">
+    <div class="flex justify-center print:hidden">
       <p class="my-8 max-w-[70ex] text-center">
         {data.ethelInfo.banner}
       </p>

@@ -5,7 +5,7 @@
   import SizeButton from "$lib/components/SizeButton.svelte";
   import SEO from "$lib/components/SEO.svelte";
   import Info from "$lib/components/Info.svelte";
-  import type { Data } from "$lib/data";
+  import type { Data } from "$lib/types";
   export let data: Data;
 </script>
 
@@ -24,7 +24,7 @@
 
   <!-- Banner -->
   {#if data.teninoInfo.banner}
-    <div class="flex justify-center">
+    <div class="flex justify-center print:hidden">
       <p class="my-8 max-w-[70ex] text-center">
         {data.teninoInfo.banner}
       </p>

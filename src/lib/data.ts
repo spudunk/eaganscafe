@@ -1,26 +1,27 @@
+import type { Data } from "./types";
+
 // place files you want to import through the `$lib` alias in this folder.
-const data = {
+export const data: Data = {
+  updated: 1707608735056,
   description:
     "Eagans are family owned diners serving burgers, fries, shakes, and more. Locations in Ethel and Tenino, WA. Call in an order today!",
   title: "Eagans Diner",
   url: "https://eagansdiner.com",
-
-  ethelInfo: <LocationInfo>{
+  ethelInfo: {
     route: "/ethel",
     url: "https://eagansdiner.com/ethel",
     heading: "Ethel Eagans Diner",
-    banner: "",
+    banner: "Now Hiring!!! Inquire Within",
     address: "1411 US-12, Ethel, WA",
     navLink: "https://goo.gl/maps/VNbK7vR7Se9qGrWD6",
     telLink: "tel:+13609785410",
     tel: "(360) 978-5410",
-    details: ["Open Every Day 8am - 7pm"],
+    details: ["Open Every Day 8am - 4pm"],
     facebookLink: "https://facebook.com/profile.php?id=61553748759189",
     facebookName: "Ethel Eagans",
     showPrices: true,
   },
-
-  teninoInfo: <LocationInfo>{
+  teninoInfo: {
     route: "/tenino",
     url: "https://eagansdiner.com/tenino",
     heading: "Eagans T9O Diner",
@@ -34,60 +35,13 @@ const data = {
     facebookName: "Loretta Eagan's T9O",
     showPrices: false,
   },
-
-  ethelLunchMenu: <Menu>{
+  ethelLunchMenu: {
     id: "ethelLunchMenu",
     title: "Ethel Lunch Menu",
     sections: [
       {
-        id: "specialtyBurgers",
-        heading: "Specialty Burgers",
-        description: [
-          "Make any burger a basket with a small side of fries and small soda for $3.75",
-          "*onions on request*",
-        ],
-        items: [
-          {
-            name: "A1 Steak",
-            description:
-              "Half pound beef patty, bacon, swiss and american cheese, goop, grilled onions, A1 sauce and tomato",
-            price: 15.49,
-          },
-          {
-            name: "Trucker",
-            description:
-              'Served on a 5" bun, 3 beef patties, goop, pickles, lettuce and tomato',
-            price: 11.09,
-          },
-          {
-            name: "Trailer",
-            description:
-              "2 beef patties, bacon, swiss and american cheese, onion rings, BBQ sauce, goop, lettuce and tomato",
-            price: 14.7,
-          },
-          {
-            name: "Spicy Cowboy",
-            description:
-              "1 beef patty, bacon, pepperjack cheese, goop, sriracha, lettuce and tomato",
-            price: 10.39,
-          },
-          {
-            name: "Chili Burger",
-            description:
-              "2 beef patties served open faced, smothered in chili and cheese with option no onions",
-            price: 10.49,
-          },
-          {
-            name: "Burger Dip",
-            description:
-              "1/4 pound meat patty, ssiss cheese, served on a hamburger bun, pub roll, or your choice of bread with a sid of Aus Jus",
-            price: 8.39,
-          },
-        ],
-      },
-      {
         id: "classicBurgers",
-        heading: "Eagans Classic Burgers",
+        heading: "Classic Burgers",
         items: [
           {
             name: "Big T",
@@ -138,6 +92,125 @@ const data = {
             description: "1 beer battered halibut, goop, and lettuce",
             price: 9.29,
           },
+          {
+            name: "French Fries",
+            description: "",
+            sizes: [
+              { size: "", price: 3.39 },
+              { size: "", price: 4.59 },
+            ],
+          },
+          {
+            name: "Tater Tots",
+            description: "",
+            sizes: [
+              { size: "", price: 4.29 },
+              { size: "", price: 7.29 },
+            ],
+          },
+          {
+            name: "Onion Rings",
+            description: "",
+            sizes: [
+              { size: "", price: 4.29 },
+              { size: "", price: 7.29 },
+            ],
+          },
+        ],
+        description: ["add small fries and a soda for $3.75"],
+      },
+      {
+        id: "specialtyBurgers",
+        heading: "Specialty Burgers",
+        description: ["add small fries and a soda for $3.75"],
+        items: [
+          {
+            name: "A1 Steak",
+            description:
+              "Half pound beef patty, bacon, swiss and american cheese, goop, grilled onions, A1 sauce and tomato",
+            price: 16.99,
+          },
+          {
+            name: "Trucker",
+            description:
+              'Served on a 5" bun, 3 beef patties, goop, pickles, lettuce and tomato',
+            price: 12.99,
+          },
+          {
+            name: "Trailer",
+            description:
+              "2 beef patties, bacon, swiss and american cheese, onion rings, BBQ sauce, goop, lettuce and tomato",
+            price: 14.99,
+          },
+          {
+            name: "Spicy Cowboy",
+            description:
+              "1 beef patty, bacon, pepperjack cheese, goop, sriracha, lettuce and tomato",
+            price: 10.39,
+          },
+          {
+            name: "Chili Burger",
+            description:
+              "2 beef patties served open faced, smothered in chili and cheese with option no onions",
+            price: 11.99,
+          },
+          {
+            name: "Burger Dip",
+            description:
+              "1/4 pound meat patty, ssiss cheese, served on a hamburger bun, pub roll, or your choice of bread with a sid of Aus Jus",
+            price: 8.79,
+          },
+          {
+            name: "Hawaiian Burger",
+            description: "1 beef patty, Swiss, Ham, pineapple and goop",
+            price: 10.39,
+          },
+        ],
+      },
+      {
+        id: "dogs",
+        heading: "Hot Dogs",
+        items: [
+          {
+            name: "Regular Dog",
+            description:
+              "sliced in thirds served on a hamburger bun with goop, and pickles",
+            price: 4.29,
+          },
+          {
+            name: "Footlong Dog",
+            description: "Pickles and Goop",
+            price: 6.29,
+          },
+          {
+            name: "Chili Dog",
+            description:
+              "Footlong dog served open faced smothered in chili and Cheese",
+            price: 8.99,
+          },
+          { name: "Corn Dog", description: "Deep fried goodness", price: 2.99 },
+        ],
+      },
+      {
+        id: "chicken",
+        heading: "Chicken Stuff",
+        items: [
+          {
+            name: "Chicken Strips",
+            description:
+              "4 breaded Chicken tenders served with a side of French fries",
+            price: 10.75,
+          },
+          {
+            name: "Nuggets",
+            description: "add fries for $1.59",
+            sizes: [
+              { size: "5pc", price: 5.49 },
+              { size: "10pc", price: 7.49 },
+              { size: "15pc", price: 9.49 },
+              { size: "20pc", price: 11.49 },
+            ],
+          },
         ],
       },
       {
@@ -166,85 +239,115 @@ const data = {
             description: "add bacon or ham for $3.50 on your choice of bread",
             price: 9.79,
           },
+          {
+            name: "Patty Melt",
+            description:
+              "Half a point meat patty, Swiss cheese, grilled onions served on marble rye",
+            price: 11.49,
+          },
+          {
+            name: "Rheuben",
+            description:
+              "Grilled rye, corned beef, Swiss, sauerkraut and Thousand Island",
+            price: 10.49,
+          },
+          {
+            name: "Club",
+            description:
+              "Toasted Triple decker, turkey, ham, bacon, lettuce, tomato, swiss, american add mayo",
+            price: 13.99,
+          },
+        ],
+      },
+      {
+        id: "seafood",
+        heading: "Seafood",
+        description: [""],
+        items: [
+          {
+            name: "Fish and Fries",
+            description:
+              "2 or 3 piece Beer battered Halibut served with fries and House made Coleslaw",
+            sizes: [
+              { size: "2 piece", price: 10.99 },
+              { size: "3 piece", price: 11.99 },
+            ],
+          },
+          {
+            name: "Prawns",
+            description:
+              "6 Breaded butterfly prawns served with fries and House made Coleslaw",
+            price: 11.99,
+          },
+          {
+            name: "Clam Strips",
+            description: "served with fries and House made coleslaw",
+            price: 9.99,
+          },
+          {
+            name: "Captains Platter",
+            description:
+              "2 pieces halibut, 3 prawns, clam strips served with fries and House made Coleslaw",
+            price: 16.99,
+          },
         ],
       },
       {
         id: "sides",
-        heading: "Sides",
+        heading: "On The Side",
         items: [
           {
             name: "Fries",
             sizes: [
-              { size: "Small", price: 3.39 },
-              { size: "Large", price: 4.59 },
+              { size: "Small", price: 3.99 },
+              { size: "Large", price: 6.99 },
             ],
           },
           {
-            name: "Tots",
+            name: "Curly Fries",
+            description: "",
+            sizes: [
+              { size: "Small", price: 5.29 },
+              { size: "Large", price: 8.29 },
+            ],
+          },
+          {
+            name: "Tater Tots",
             sizes: [
               { size: "Small", price: 4.29 },
               { size: "Large", price: 7.29 },
             ],
           },
           {
-            name: "Orings",
+            name: "Onion Rings",
             sizes: [
-              { size: "Small", price: 5.09 },
-              { size: "Large", price: 7.99 },
-            ],
-          },
-        ],
-      },
-      {
-        id: "dogs",
-        heading: "Hot Dogs",
-        items: [
-          {
-            name: "Regular Dog",
-            description:
-              "A hot dog sliced in thirds served on a hamburger bun with goop, and pickles",
-            price: 4.29,
-          },
-          {
-            name: "Footlong Dog",
-            description:
-              "Pickles and Goop served with a deep fried footlong dog",
-            price: 5.29,
-          },
-          {
-            name: "Chili Dog",
-            description:
-              "Deep fried footlong dog served open face smothered in chili and Cheese with the option of onions",
-            price: 8.29,
-          },
-          {
-            name: "Corn Dog",
-            description: "Deep fried goodness",
-            price: 2.89,
-          },
-        ],
-      },
-      {
-        id: "chicken",
-        heading: "Chicken Stuff",
-        items: [
-          {
-            name: "Nuggets",
-            description: "add fries for $1.59",
-            // price: 0,
-            sizes: [
-              { size: "5pc", price: 5.49 },
-              { size: "10pc", price: 7.49 },
-              { size: "15pc", price: 9.49 },
-              { size: "20pc", price: 11.49 },
+              { size: "Small", price: 5.29 },
+              { size: "Large", price: 8.29 },
             ],
           },
           {
-            name: "Chicken Strips",
-            description:
-              "Served with 4 breaded tenders and a small order of fries",
-            price: 10.75,
+            name: "Coleslaw",
+            description: "better get it before its gone",
+            price: 4.59,
           },
+          {
+            name: "Daily Soup",
+            description: "",
+            sizes: [
+              { size: "Small", price: 3.99 },
+              { size: "Large", price: 4.99 },
+            ],
+          },
+          {
+            name: "Clam Chowder",
+            description: "",
+            sizes: [
+              { size: "Small", price: 4.99 },
+              { size: "Large", price: 5.99 },
+            ],
+          },
+          { name: "Side Salad", description: "", price: 4.59 },
+          { name: "Homemade Pie", description: "", price: 4.99 },
         ],
       },
       {
@@ -255,70 +358,62 @@ const data = {
             name: "Soft Drinks",
             description:
               "Pepsi, orange crush, mug, Dr. pepper, Squirt, diet pepsi",
-            // price: 0,
-            // sizes: [
-            //   { size: "Small", price: 0 },
-            //   { size: "Large", price: 0 },
-            // ],
           },
           {
             name: "Bottled Drinks",
             description:
               "H20, Mountain Dew, Starbucks Pink Drink, grape soda, applejuice, orange juice, blue and red Gatorade",
-            // price: 0,
-            // sizes: [
-            //   { size: "Small", price: 0 },
-            //   { size: "Large", price: 0 },
-            // ],
           },
           {
             name: "Milkshakes",
             description:
               "chocolate, strawberry, vanilla, blackberry, blueberry, raspberry, caramel apple sucker, oreo, green apple, fresh banana, coffee, caramel, butterscotch, pineapple, peanut butter, white chocolate, havstack (white chocolate, vanilla, and marshmallow), blue raspberry, marshmellow, coconut, mint, bubblegum, rootbeer, cherry, orange, hot fudge, orange jullus, huckleberry",
-            // price: 0,
-            // sizes: [
-            //   { size: "Small", price: 0 },
-            //   { size: "Large", price: 0 },
-            // ],
           },
         ],
       },
     ],
   },
-
-  ethelBreakfastMenu: <Menu>{
+  ethelBreakfastMenu: {
     id: "ethelBreakfastMenu",
     title: "Ethel Breakfast Menu",
     sections: [
       {
         id: "classic",
         heading: "Classic Breakfast",
-        description: [
-          "Breakfast served with hashbrowns, 2 eggs, and toast or a biscuit.",
-        ],
+        description: ["served with 2 eggs, hashbrowns, and a biscuit."],
         items: [
           {
             name: "Bacon and Eggs",
             price: 13.49,
+            description: "4 slices bacon, 2 eggs, hashbrowns and a biscuit",
           },
           {
             name: "Sausage and Eggs",
-            description: "choice of links or patties",
+            description:
+              "choice of 2 patty's or 4 links, 2 *, hashbrown and a biscuit",
             price: 13.49,
           },
           {
-            name: "Hashbrows and Eggs",
-            description:
-              "served with your choice of sourdough, white, wheat, or biscuit",
-            price: 10.49,
+            name: "Ham and Eggs",
+            description: "Ham Steak, 2 eggs, hashbrowns and a biscuit",
+            price: 14.49,
           },
           {
-            name: "Hamburger Steak",
+            name: "Hamburger Steak and Eggs",
             price: 14.49,
+            description:
+              "hand pressed burger patty, 2 eggs, hashbrowns, and a biscuit",
           },
           {
             name: "Country Fried Steak",
             price: 15.49,
+            description:
+              "battered beef fritter topped with our house made country gravy, 2 eggs, hashbrowns and a biscuit",
+          },
+          {
+            name: "Hashbrowns and Eggs",
+            description: "hashbrowns, 2 eggs and a biscuit",
+            price: 10.49,
           },
         ],
       },
@@ -328,120 +423,85 @@ const data = {
         description: [],
         items: [
           {
-            name: "Ham and Cheese Omelett",
+            name: "Ham and Cheese",
             price: 12.49,
+            description: "3 eggs, hame and cheese, hashbrowns and a biscuit",
           },
           {
-            name: "Sausage or Bacon and Cheese Omelett",
+            name: "Sausage or Bacon and Cheese",
             price: 12.49,
+            description: "3 eggs, sausage and cheese, hashbrowns and a biscuit",
           },
           {
-            name: "Denver Omelett",
-            description: "Ham, bell pepper, onions, and cheese",
-            price: 14.49,
-          },
-          {
-            name: "Veggie Omelett",
-            description: "Mushrooms, bell peppers, tomato, onion, and cheese",
-            price: 14.49,
-          },
-        ],
-      },
-      {
-        id: "sandwiches",
-        heading: "Breakfast Sandwiches",
-        description: [],
-        items: [
-          {
-            name: "Bacon, Ham, or Sausage and Egg Sandwich",
+            name: "Denver",
             description:
-              "Served on your choice of white, wheat, sourdough, or biscuit",
-            price: 7.89,
+              "3 eggs, cheese, ham, bell pepper and onions, Hashbrowns and a biscuit",
+            price: 14.49,
+          },
+          {
+            name: "Veggie",
+            description:
+              "3 eggs, cheese, bell pepper, onion,  olives, mushrooms and tomato, hashbrowns and a biscuit",
+            price: 14.49,
+          },
+          {
+            name: "All Meat and Cheese",
+            description:
+              "3 eggs, Ham, Bacon and Sausage, hashbrowns and a biscuit",
+            price: 16.49,
           },
         ],
       },
       {
         id: "griddle",
-        heading: "Off the Griddle",
+        heading: "Hot Off the Griddle",
         description: [],
         items: [
+          { name: "Single Cake", price: 3.99 },
+          { name: "Short Stack", price: 7.49, description: "stack of 2 cakes" },
           {
-            name: "Single Cake",
-            price: 3.49,
-          },
-          {
-            name: "Short Stack",
-            sizes: [
-              { size: "2 cakes", price: 6.48 },
-              { size: "3 cakes", price: 9.49 },
-            ],
-          },
-          {
-            name: "",
-            description:
-              "1 cake, with 2 eggs, choice of sausage links, patties, bacon, or Ham",
+            name: "222",
+            description: "2 cakes, with 2 eggs and 2 links, 2 bacon OR 1 patty",
             price: 11.49,
           },
+          { name: "French Toast", description: "2 slices", price: 6.49 },
         ],
       },
       {
-        id: "bAndG",
-        heading: "Classic B&G",
+        id: "gravy",
+        heading: "Stuff with Gravy",
         description: [],
         items: [
           {
-            name: "Half biscuit & Gravy",
-            description: "1 and a half biscuits",
-            price: 5.39,
+            name: "Half Biscuit and Gravy",
+            description:
+              "One and a half buttermilk biscuits covered in our homemade country gravy",
+            price: 6.39,
           },
           {
-            name: "Full biscuit & Gravy",
-            description: "2 and a half biscuits",
+            name: "Full Biscuit and Gravy",
+            description:
+              "Two and a half biscuits smothered in our homemade country gravy",
             price: 8.89,
           },
           {
-            name: "Hashbrows Biscuits & Gravy",
+            name: "Hashbrows Biscuit and Gravy",
             price: 10.89,
-          },
-          {
-            name: "",
             description:
-              "Half order B&G with 2 eggs and choice of Sausage links, patties, bacon, or Ham",
-            price: 14.39,
-          },
-        ],
-      },
-      {
-        id: "sides",
-        heading: "Sides",
-        items: [
-          {
-            name: "Hashbrowns and Gravy",
-            price: 7.49,
+              "Hashbrowns cooked golden with a buttermilk biscuit topped with gravy",
           },
           {
-            name: "Eggs (2)",
-            price: 2.49,
-          },
-          {
-            name: "Toast or Biscuit",
-            price: 1.99,
-          },
-          {
-            name: "Breakfast Meats",
+            name: "All the Fixins",
             description:
-              "4 slices of bacon, 4 links, 2 Patties, and 1 slice ham",
-            sizes: [
-              { size: "Full order", price: 8.5 },
-              { size: "Half order", price: 4.5 },
-            ],
+              "a single biscuit with gravy, 2 eggs, 2 links, 2 strips of bacon or 1 sausage patty",
+            price: 13.99,
           },
+          { name: "Hashbrowns and Gravy", description: "", price: 7.89 },
         ],
       },
     ],
   },
-
-  teninoMenu: <Menu>{
+  teninoMenu: {
     id: "teninoMenu",
     title: "T9O Menu",
     sections: [
@@ -582,11 +642,7 @@ const data = {
               { size: "Large", price: 0 },
             ],
           },
-          {
-            name: "Puppy Patty",
-            description: "extra beef patty",
-            price: 0,
-          },
+          { name: "Puppy Patty", description: "extra beef patty", price: 0 },
           {
             name: "Sauces",
             description:
@@ -597,54 +653,6 @@ const data = {
       },
     ],
   },
-};
-
-export default data;
-
-export type Data = {
-  description: string;
-  title: string;
-  url: string;
-  ethelInfo: LocationInfo;
-  teninoInfo: LocationInfo;
-  ethelLunchMenu: Menu;
-  ethelBreakfastMenu: Menu;
-  teninoMenu: Menu;
-};
-
-export type LocationInfo = {
-  route: string;
-  url: string;
-  heading: string;
-  banner: string;
-  address: string;
-  navLink: string;
-  telLink: string;
-  tel: string;
-  details: string[];
-  facebookLink: string;
-  facebookName: string;
-  showPrices: boolean;
-};
-
-export type MenuItem = {
-  name: string;
-  description: string | undefined;
-  price: number | undefined;
-  sizes: { size: string; price: number }[] | undefined;
-};
-
-export type MenuSection = {
-  id: string;
-  heading: string;
-  description: string[];
-  items: MenuItem[];
-};
-
-export type Menu = {
-  id: string;
-  title: string;
-  sections: MenuSection[];
 };
 
 // menu template

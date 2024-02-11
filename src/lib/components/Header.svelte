@@ -1,14 +1,18 @@
 <script lang="ts">
   export let phone = "";
   export let tel = "";
+  export let reload = false;
 </script>
 
 <header
-  class="fixed top-0 left-0 w-full bg-neutral-200 dark:bg-neutral-800 opacity-90 py-2 print:hidden"
+  class="fixed z-50 top-0 left-0 w-full bg-neutral-200 dark:bg-neutral-800 opacity-90 py-2 print:hidden"
 >
   <div class="container flex justify-between items-center">
-    <a class="logo" href="/">Eagans Diner</a>
-
+    {#if reload}
+      <a class="logo" data-sveltekit-reload href="/">Eagans Diner</a>
+    {:else}
+      <a class="logo" href="/">Eagans Diner</a>
+    {/if}
     {#if tel}
       <div>
         <a
